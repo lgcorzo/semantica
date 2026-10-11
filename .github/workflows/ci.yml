@@ -4,6 +4,7 @@ permissions:
   contents: read
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths-ignore:
@@ -23,7 +24,7 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     # Only needed for pull_request events; push events are pre-filtered above.
-    if: github.event_name == 'pull_request'
+    if: github.repository_owner == 'lgcorzo' && github.event_name == 'pull_request'
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
@@ -64,6 +65,7 @@ jobs:
     # For push/non-PR events: changes is skipped; always() prevents the build
     # from being skipped due to a skipped needs dependency.
     if: >-
+      github.repository_owner == 'lgcorzo' &&
       always() && (
         github.event_name != 'pull_request' ||
         needs.changes.result != 'success' ||

@@ -1,6 +1,7 @@
 name: CodeQL
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
@@ -13,6 +14,7 @@ permissions:
 
 jobs:
   analyze:
+    if: github.repository_owner == 'lgcorzo'
     name: Analyze Python
     runs-on: ubuntu-latest
     permissions:

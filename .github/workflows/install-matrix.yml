@@ -18,7 +18,7 @@ on:
 
 jobs:
   verify-install:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    if: github.repository_owner == 'lgcorzo' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     name: pip install semantica (${{ matrix.os }}, py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
     strategy:

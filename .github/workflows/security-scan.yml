@@ -30,7 +30,7 @@ jobs:
   # Push events (to main) keep their own paths-ignore above.
   changes:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.repository_owner == 'lgcorzo' && github.event_name == 'pull_request'
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
@@ -60,6 +60,7 @@ jobs:
           fi
 
   security-scan:
+    if: github.repository_owner == 'lgcorzo'
     # For pull_request events:
     #   - skip only when changes ran successfully and explicitly set src=false
     #     (i.e. a confirmed docs-only PR).

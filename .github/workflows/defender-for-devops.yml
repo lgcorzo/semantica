@@ -19,6 +19,7 @@
 name: "Microsoft Defender For Devops"
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -31,6 +32,7 @@ permissions:
 
 jobs:
   MSDO:
+    if: github.repository_owner == 'lgcorzo'
     # currently only windows-latest is supported
     runs-on: windows-latest
     permissions:
