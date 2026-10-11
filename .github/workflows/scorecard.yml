@@ -3,6 +3,7 @@ name: Scorecard supply-chain security
 permissions: read-all
 
 on:
+  workflow_dispatch:
   branch_protection_rule:
   schedule:
     - cron: '30 1 * * 6'  # weekly
@@ -11,6 +12,7 @@ on:
 
 jobs:
   analysis:
+    if: github.repository_owner == 'lgcorzo'
     name: Scorecard analysis
     runs-on: ubuntu-latest
     permissions:

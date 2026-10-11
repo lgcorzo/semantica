@@ -8,6 +8,7 @@ permissions:
 
 jobs:
   performance-test:
+    if: github.repository_owner == 'lgcorzo'
     name: Benchmark Runner (Ubuntu/Python 3.12)
     runs-on: ubuntu-latest
 
@@ -64,7 +65,7 @@ jobs:
         env:
           BENCHMARK_REAL_LIBS: "1"
         run: |
-          python benchmarks/benchmarks_runner.py
+          python -m semantica.benchmarks list
           # Optional: Compare to baseline (requires previous run artifact)
           # pytest-benchmark --storage file://benchmarks/results --benchmark-compare
 

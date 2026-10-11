@@ -27,6 +27,7 @@ permissions:
 
 jobs:
   scan:
+    if: github.repository_owner == 'lgcorzo'
     runs-on: ubuntu-latest
     permissions:
       contents: read
