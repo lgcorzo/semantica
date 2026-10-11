@@ -10,9 +10,9 @@ updates:
       time: "03:30"  # 3:30 AM UTC (9:00 AM IST)
     open-pull-requests-limit: 10  # Higher limit for security updates
     reviewers:
-      - "KaifAhmad1"
+      - "lgcorzo"
     assignees:
-      - "KaifAhmad1"
+      - "lgcorzo"
     commit-message:
       prefix: "security"
       include: "scope"
@@ -24,6 +24,9 @@ updates:
       - dependency-type: "production"
       - dependency-type: "development"
     ignore:
+      # Ignore transitive IaC dependencies with known unresolvable alerts in checkov
+      - dependency-name: "asteval"
+      - dependency-name: "ecdsa"
       # Only ignore major version updates for stability-critical packages
       - dependency-name: "torch"
         update-types: ["version-update:semver-major"]
@@ -60,9 +63,9 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 3
     reviewers:
-      - "KaifAhmad1"
+      - "lgcorzo"
     assignees:
-      - "KaifAhmad1"
+      - "lgcorzo"
     commit-message:
       prefix: "ci"
       include: "scope"
@@ -88,9 +91,9 @@ updates:
     target-branch: "main"
     open-pull-requests-limit: 3
     reviewers:
-      - "KaifAhmad1"
+      - "lgcorzo"
     assignees:
-      - "KaifAhmad1"
+      - "lgcorzo"
     commit-message:
       prefix: "deps"
       include: "scope"
@@ -110,9 +113,9 @@ updates:
       time: "03:30"  # 3:30 AM UTC (9:00 AM IST)
     open-pull-requests-limit: 10
     reviewers:
-      - "KaifAhmad1"
+      - "lgcorzo"
     assignees:
-      - "KaifAhmad1"
+      - "lgcorzo"
     commit-message:
       prefix: "security"
       include: "scope"
@@ -145,9 +148,9 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 2
     reviewers:
-      - "KaifAhmad1"
+      - "lgcorzo"
     assignees:
-      - "KaifAhmad1"
+      - "lgcorzo"
     commit-message:
       prefix: "docker"
       include: "scope"
@@ -169,7 +172,7 @@ updates:
       interval: "monthly"
     open-pull-requests-limit: 2
     reviewers:
-      - "KaifAhmad1"
+      - "lgcorzo"
     commit-message:
       prefix: "docs"
       include: "scope"
