@@ -40,9 +40,24 @@
 pip install semantica
 ```
 
-</div>
-
 [English](https://readme-i18n.com/semantica-agi/semantica?lang=en) · [Deutsch](https://readme-i18n.com/semantica-agi/semantica?lang=de) · [Français](https://readme-i18n.com/semantica-agi/semantica?lang=fr) · [Español](https://readme-i18n.com/semantica-agi/semantica?lang=es) · [Italiano](https://readme-i18n.com/semantica-agi/semantica?lang=it) · [Português](https://readme-i18n.com/semantica-agi/semantica?lang=pt) · [العربية](https://readme-i18n.com/semantica-agi/semantica?lang=ar) · [اردو](https://readme-i18n.com/semantica-agi/semantica?lang=ur) · [हिन्दी](https://readme-i18n.com/semantica-agi/semantica?lang=hi) · [中文](https://readme-i18n.com/semantica-agi/semantica?lang=zh) · [日本語](https://readme-i18n.com/semantica-agi/semantica?lang=ja) · [한국어](https://readme-i18n.com/semantica-agi/semantica?lang=ko)
+
+---
+
+## 🛡️ Dark Gravity Integration & Technological Sovereignty Policy
+
+This system provides the **Ontological Causal Graph & Decision Provenance Engine** for the **[Dark Gravity Autonomous CA/CD Software Factory](https://github.com/lgcorzo/rust_CACD_autonomous_factory)** ([Architecture Knowledge Base](https://notebook.google.com/notebook/116d5f03-2fb0-4fa7-bd7c-1c9849920abc)).
+
+### 1. Architectural Role in Dark Gravity
+- **Decision Lineage & Causal Tracking:** Captures immutable snapshots of agent cognitive decisions, mapping requirement inputs (Vertex 1) directly down to exact AST line modifications (Vertex 3) and verification verdicts (Vertex 4).
+- **Regulatory Compliance (EU AI Act & SPRI/Hazitek):** Persists causal graph snapshots into the sovereign S3 storage tier (`semantica-provenance` bucket), providing legally auditable evidence of non-hallucinatory AI development.
+- **Air-Gapped Context Management:** Operates within the private cluster network without relying on external SaaS graph databases.
+
+### 2. Supply-Chain Sovereignty & Independent Maintenance
+- **Sovereign Graph Infrastructure:** Maintained under `@lgcorzo` to insulate Dark Gravity's explainability layer from external licensing shifts or unvetted upstream breaking changes.
+- **Continuous Security Hardening:** Verified against zero secret leakage and container security policies.
+
+---
 
 ---
 
