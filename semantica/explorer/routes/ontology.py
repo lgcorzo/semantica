@@ -2695,9 +2695,11 @@ async def _fetch_analysis_graph(
     nodes, total_nodes = await asyncio.to_thread(session.get_nodes, skip=0, limit=_MAX_ANALYSIS_NODES)
     edges, total_edges = await asyncio.to_thread(session.get_edges, skip=0, limit=_MAX_ANALYSIS_NODES)
     if total_nodes > _MAX_ANALYSIS_NODES or total_edges > _MAX_ANALYSIS_NODES:
+        clean_tag = str(log_tag).replace("\r", "").replace("\n", "")[:50]
+        clean_uri = str(uri).replace("\r", "").replace("\n", "")[:200]
         logger.warning(
             "%s: graph for %s is too large to analyse (nodes=%d, edges=%d, limit=%d); skipping.",
-            log_tag, uri, total_nodes, total_edges, _MAX_ANALYSIS_NODES,
+            clean_tag, clean_uri, total_nodes, total_edges, _MAX_ANALYSIS_NODES,
         )
         raise GraphTruncationError(
             f"Graph size (nodes={total_nodes}, edges={total_edges}) exceeds maximum analysis limit ({_MAX_ANALYSIS_NODES}). "

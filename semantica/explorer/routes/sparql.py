@@ -67,10 +67,31 @@ _FORBIDDEN_KEYWORDS = re.compile(
 # handles both inline prologues (`PREFIX ex: <...> SELECT ...` on one line)
 # and CRLF line endings (`\r\n`) without any special casing.
 _COMMENT_LINE = re.compile(r"(?:^|(?<=\s))#[^\n]*", re.MULTILINE)
-_PREFIX_DECL = re.compile(
-    r"^[ \t]*(?:PREFIX[ \t]+\S+|BASE)[ \t]*<[^>\r\n]*>[ \t]*",
-    re.IGNORECASE | re.MULTILINE,
-)
+
+
+def _strip_sparql_prologue(query: str) -> str:
+    """Safely strip SPARQL comments and PREFIX / BASE prologue lines without ReDoS risk."""
+    lines = query.splitlines()
+    body_lines = []
+    in_prologue = True
+
+    for line in lines:
+        cleaned_line = _COMMENT_LINE.sub("", line).strip()
+        if not cleaned_line:
+            continue
+        if in_prologue:
+            upper = cleaned_line.upper()
+            if upper.startswith("PREFIX ") or upper.startswith("PREFIX\t") or upper.startswith("BASE ") or upper.startswith("BASE\t") or upper.startswith("BASE<"):
+                if ">" in cleaned_line:
+                    after_iri = cleaned_line[cleaned_line.find(">") + 1:].strip()
+                    if after_iri:
+                        body_lines.append(after_iri)
+                        in_prologue = False
+                    continue
+            in_prologue = False
+        body_lines.append(cleaned_line)
+
+    return " ".join(body_lines).strip()
 
 
 def _is_read_only_query(query: str) -> bool:
@@ -85,18 +106,13 @@ def _is_read_only_query(query: str) -> bool:
     calling this function so that an oversized-query rejection can be surfaced
     as a distinct, actionable error rather than the generic read-only message.
     """
-    # 1. Remove single-line comments that could hide the real query type
-    cleaned = _COMMENT_LINE.sub("", query)
-    # 2. Remove PREFIX/BASE declarations
-    cleaned = _PREFIX_DECL.sub("", cleaned)
-    # 3. Strip remaining whitespace
-    cleaned = cleaned.strip()
+    cleaned = _strip_sparql_prologue(query)
 
-    # 4. Check that the first keyword is a read-only query type
+    # Check that the first keyword is a read-only query type
     if not _ALLOWED_QUERY_TYPES.match(cleaned):
         return False
 
-    # 5. Block any forbidden (mutating) keywords anywhere in the query
+    # Block any forbidden (mutating) keywords anywhere in the query
     if _FORBIDDEN_KEYWORDS.search(cleaned):
         return False
 
