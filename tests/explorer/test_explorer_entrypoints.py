@@ -264,6 +264,23 @@ def test_cli_main_configures_allowed_origins_for_custom_port(tmp_path, monkeypat
         assert excinfo.value.code == 4403
 
 
+@pytest.mark.parametrize("port", ["0", "-1", "65536", "70000"])
+def test_cli_main_rejects_out_of_range_ports(tmp_path, monkeypatch, capsys, port):
+    graph_file = tmp_path / "test_graph.json"
+    graph_file.write_text('{"nodes": [], "edges": []}', encoding="utf-8")
+
+    from semantica.explorer import main
+    import uvicorn
+
+    monkeypatch.setattr(uvicorn, "run", lambda *args, **kwargs: None)
+
+    with pytest.raises(SystemExit) as excinfo:
+        main(["--graph", str(graph_file), "--port", port, "--no-browser"])
+
+    assert excinfo.value.code == 2
+    assert "port must be an integer from 1 to 65535" in capsys.readouterr().err
+
+
 def test_cli_main_preserves_explicit_allowed_origins(tmp_path, monkeypatch):
     """Ensure explicit ALLOWED_ORIGINS is not overridden when --port is specified."""
     monkeypatch.setenv("SEMANTICA_ALLOW_ANONYMOUS", "true")
@@ -325,14 +342,6 @@ def test_cli_main_brackets_an_ipv6_host_origin(tmp_path, monkeypatch):
 
     assert "http://[fe80::1]:8020" in origins
     assert "http://fe80::1:8020" not in origins
-
-
-def test_cli_main_skips_the_port_origins_for_port_zero(tmp_path, monkeypatch):
-    """With --port 0 the OS picks the port later, so no :0 origin is added and
-    the Vite defaults are kept."""
-    origins = _cli_allowed_origins(tmp_path, monkeypatch, "--port", "0")
-
-    assert origins == ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 
 def test_cli_main_opens_the_bracketed_url_for_an_ipv6_host(tmp_path, monkeypatch):
