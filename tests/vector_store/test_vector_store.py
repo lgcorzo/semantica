@@ -492,7 +492,8 @@ def test_sqlite_update_vectors_skips_row_deleted_in_the_backend(tmp_path):
         [original, kept],
         metadata=[{"label": "gone"}, {"label": "kept"}],
     )
-    assert vs._backend_store.delete([ids[0]]) is True
+    deleted = vs._backend_store.delete([ids[0]])
+    assert deleted is True
 
     new_gone = np.array([0.9, 0.9], dtype=np.float32)
     new_kept = np.array([0.8, 0.8], dtype=np.float32)

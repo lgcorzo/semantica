@@ -2725,7 +2725,8 @@ class TestPipeline:
                 ["pipeline", "init", "--output", "pl.yaml"],
             )
             _ok(result)
-            text = open("pl.yaml").read()
+            with open("pl.yaml", "r", encoding="utf-8") as f:
+                text = f.read()
         assert "steps: []" not in text
         assert "type: ingest" in text
 
