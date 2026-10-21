@@ -2025,9 +2025,10 @@ class ProviderPool:
             self._local.building = building
 
         if key in building:
+            clean_name = str(name).replace("\r", "").replace("\n", "")[:100]
             self.logger.debug(
                 "Re-entrant get() for %s — constructing fresh instance to avoid deadlock",
-                name,
+                clean_name,
             )
             return self._create_provider(name, **kwargs)
 
@@ -2064,7 +2065,8 @@ class ProviderPool:
             # This thread is the builder — construct outside every lock.
             building.add(key)
             try:
-                self.logger.debug("Creating new provider instance for %s", name)
+                clean_name = str(name).replace("\r", "").replace("\n", "")[:100]
+                self.logger.debug("Creating new provider instance for %s", clean_name)
                 provider = self._create_provider(name, **kwargs)
                 with self._meta_lock:
                     self._providers[key] = provider

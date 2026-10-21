@@ -1,4 +1,4 @@
-﻿"""
+"""
 Graph routes for explorer node, edge, path, and search APIs.
 """
 
@@ -525,7 +525,9 @@ async def distance_matrix(
                         else:
                             matrix[row][col] = float(len(path_nodes) - 1)
             except Exception as exc:
-                logger.debug("distance_matrix pair (%s, %s) failed: %s", src, tgt, exc)
+                clean_src = str(src).replace("\r", "").replace("\n", "")[:100]
+                clean_tgt = str(tgt).replace("\r", "").replace("\n", "")[:100]
+                logger.debug("distance_matrix pair (%s, %s) failed: %s", clean_src, clean_tgt, exc)
                 unreachable.append((src, tgt))
                 unreachable.append((tgt, src))
 

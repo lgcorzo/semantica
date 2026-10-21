@@ -25,6 +25,11 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/temporal", tags=["Temporal"])
 
 
+def _clean_log(val: object) -> str:
+    """Sanitize input for logging to prevent CRLF log injection (CWE-117)."""
+    return str(val).replace("\r", "").replace("\n", "")[:100]
+
+
 class TemporalSnapshotFastResponse(BaseModel):
     timestamp: str
     active_node_ids: List[str]
@@ -49,14 +54,14 @@ def _parse_flexible_dt(value: str) -> Optional[datetime]:
             dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
         return dt
     except (ValueError, AttributeError) as exc:
-        logger.warning("Malformed temporal value %r; treating node as always active (%s)", value, exc)
+        logger.warning("Malformed temporal value %s; treating node as always active (%s)", _clean_log(value), exc)
         return None
 
 
 def _parse_query_dt(value: str) -> datetime:
     parsed = _parse_flexible_dt(value)
     if parsed is None:
-        logger.warning("Could not parse timestamp %r; defaulting to utcnow()", value)
+        logger.warning("Could not parse timestamp %s; defaulting to utcnow()", _clean_log(value))
         return datetime.now(timezone.utc).replace(tzinfo=None)
     return parsed
 
@@ -159,8 +164,8 @@ async def distance_history(
                 hop_count = len(path_nodes) - 1 if path_nodes else None
             except Exception as exc:
                 logger.warning(
-                    "distance_history path computation failed for source=%r target=%r metric=%r: %s",
-                    source, target, metric, exc, exc_info=True,
+                    "distance_history path computation failed for source=%s target=%s metric=%s: %s",
+                    _clean_log(source), _clean_log(target), _clean_log(metric), exc, exc_info=True,
                 )
         now = datetime.now(timezone.utc).replace(tzinfo=None)
         snap = DistanceSnapshot(
@@ -204,8 +209,8 @@ async def distance_history(
                 hop_count = len(path_nodes) - 1 if path_nodes else None
             except Exception as exc:
                 logger.warning(
-                    "distance_history path computation failed for source=%r target=%r at=%s metric=%s: %s",
-                    source, target, sample_time.isoformat(), metric, exc, exc_info=True,
+                    "distance_history path computation failed for source=%s target=%s at=%s metric=%s: %s",
+                    _clean_log(source), _clean_log(target), sample_time.isoformat(), _clean_log(metric), exc, exc_info=True,
                 )
                 hop_count = None
 
