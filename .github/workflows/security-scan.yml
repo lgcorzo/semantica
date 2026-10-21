@@ -231,7 +231,8 @@ jobs:
           #   not load arbitrary user checkpoints. Re-evaluate once accelerate
           #   releases a fixed version.
           # - Pillow<=12.3.0 advisories: CVE-2026-112395, CVE-2026-112397, CVE-2026-112400,
-          #   CVE-2026-112404, CVE-2026-112895, CVE-2026-112896, CVE-2026-112897, CVE-2026-112899.
+          #   CVE-2026-112402, CVE-2026-112404, CVE-2026-112893, CVE-2026-112895, CVE-2026-112896,
+          #   CVE-2026-112897, CVE-2026-112899, CVE-2026-112900.
           #   Pillow 13.0.0 is blocked upstream by docling-core<13.0.0 and fastembed<13.0.
           #   Semantica does not expose image morphology or zero-width PPM rendering.
           # - virtualenv<=21.9.0 advisories: CVE-2026-113725, CVE-2026-113726, CVE-2026-113732,
@@ -240,7 +241,7 @@ jobs:
           #   the primary `id` (with the other listed under `aliases`) depending on
           #   which alias the backing database picks as canonical, so both need to
           #   be listed here and the matching below checks aliases too.
-          IGNORED_VULN_IDS="GHSA-4j2p-28q2-5m79,CVE-2026-69112,CVE-2026-112395,CVE-2026-112397,CVE-2026-112400,CVE-2026-112404,CVE-2026-112895,CVE-2026-112896,CVE-2026-112897,CVE-2026-112899,CVE-2026-113725,CVE-2026-113726,CVE-2026-113732,CVE-2026-113776"
+          IGNORED_VULN_IDS="GHSA-4j2p-28q2-5m79,CVE-2026-69112,CVE-2026-112395,CVE-2026-112397,CVE-2026-112400,CVE-2026-112402,CVE-2026-112404,CVE-2026-112893,CVE-2026-112895,CVE-2026-112896,CVE-2026-112897,CVE-2026-112899,CVE-2026-112900,CVE-2026-113725,CVE-2026-113726,CVE-2026-113732,CVE-2026-113776"
 
           # Exported so the "Comment PR with Security Results" step below can
           # apply the same exclusion list to the raw report - it reads
