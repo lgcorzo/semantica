@@ -11,7 +11,9 @@ Every graph used below has two communities, so a constant wrapper-key count
 cannot accidentally pass.
 """
 
-from unittest import mock
+import unittest
+
+mock = unittest.mock
 
 from semantica.context import ContextGraph
 from semantica.context.context_retriever import ContextRetriever
