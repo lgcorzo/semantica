@@ -176,7 +176,9 @@ def test_target_fn_exception_becomes_error_verdict():
 def test_error_takes_precedence_over_flaky():
     _reset()
 
-    def sometimes_boom(case, _state={"i": 0}):
+    _state = {"i": 0}
+
+    def sometimes_boom(case):
         _state["i"] += 1
         if _state["i"] == 2:
             raise RuntimeError("boom")

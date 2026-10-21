@@ -290,13 +290,7 @@ class GDriveIngestor:
                 metadata={"include_subfolders": include_subfolders},
             )
 
-        except HttpError as e:
-            self.progress_tracker.stop_tracking(
-                tracking_id, status="failed", message=str(e)
-            )
-            self.logger.error(f"Failed to ingest folder: {e}")
-            raise ProcessingError(f"Failed to ingest folder: {e}") from e
-        except Exception as e:
+        except (HttpError, Exception) as e:
             self.progress_tracker.stop_tracking(
                 tracking_id, status="failed", message=str(e)
             )
@@ -381,13 +375,7 @@ class GDriveIngestor:
 
             return result
 
-        except HttpError as e:
-            self.progress_tracker.stop_tracking(
-                tracking_id, status="failed", message=str(e)
-            )
-            self.logger.error(f"Failed to ingest file: {e}")
-            raise ProcessingError(f"Failed to ingest file: {e}") from e
-        except Exception as e:
+        except (HttpError, Exception) as e:
             self.progress_tracker.stop_tracking(
                 tracking_id, status="failed", message=str(e)
             )

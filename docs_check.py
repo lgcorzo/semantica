@@ -64,7 +64,8 @@ def check(label: str) -> Callable[[Callable[[], list[str]]], None]:
 
 
 def read(path: str) -> str:
-    return open(path, encoding="utf-8").read()
+    with open(path, encoding="utf-8") as f:
+        return f.read()
 
 
 # ── 1. docs.json is valid JSON ────────────────────────────────────────────────
@@ -171,11 +172,12 @@ def _() -> list[str]:
     issues: list[str] = []
     for fpath in ALL_MD:
         in_block = False
-        for i, line in enumerate(open(fpath, encoding="utf-8"), 1):
-            if line.strip().startswith("```"):
-                in_block = not in_block
-            if in_block and re.search(r":\s*(list|dict|tuple|set)\[", line):
-                issues.append(f"{fpath}:{i}: {line.rstrip()}")
+        with open(fpath, encoding="utf-8") as f:
+            for i, line in enumerate(f, 1):
+                if line.strip().startswith("```"):
+                    in_block = not in_block
+                if in_block and re.search(r":\s*(list|dict|tuple|set)\[", line):
+                    issues.append(f"{fpath}:{i}: {line.rstrip()}")
     return issues
 
 

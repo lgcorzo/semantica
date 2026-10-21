@@ -1610,11 +1610,12 @@ async def load_ontology(
         logger.warning(f"OntologyIngestor failed, falling back to basic parsing: {ingest_exc}")
 
         # Fallback to basic parsing
-        nodes, edges, metadata = await asyncio.to_thread(
-            _parse_rdf_sync, content_str.encode("utf-8"), fmt
-        )
-    except Exception as exc:
-        raise HTTPException(status_code=422, detail=f"Could not parse ontology: {exc}") from exc
+        try:
+            nodes, edges, metadata = await asyncio.to_thread(
+                _parse_rdf_sync, content_str.encode("utf-8"), fmt
+            )
+        except Exception as exc:
+            raise HTTPException(status_code=422, detail=f"Could not parse ontology: {exc}") from exc
 
     # Fallback path - use basic parsing
     try:
