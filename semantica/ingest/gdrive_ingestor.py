@@ -46,7 +46,10 @@ except (ImportError, OSError):
     InstalledAppFlow = None
     Request = None
     build = None
-    HttpError = None
+
+    class HttpError(Exception):  # type: ignore[no-redef]
+        """Fallback exception when googleapiclient is not installed."""
+
     MediaIoBaseDownload = None
     io = None
 
@@ -290,12 +293,6 @@ class GDriveIngestor:
                 metadata={"include_subfolders": include_subfolders},
             )
 
-        except HttpError as e:
-            self.progress_tracker.stop_tracking(
-                tracking_id, status="failed", message=str(e)
-            )
-            self.logger.error(f"Failed to ingest folder: {e}")
-            raise ProcessingError(f"Failed to ingest folder: {e}") from e
         except Exception as e:
             self.progress_tracker.stop_tracking(
                 tracking_id, status="failed", message=str(e)
@@ -381,12 +378,6 @@ class GDriveIngestor:
 
             return result
 
-        except HttpError as e:
-            self.progress_tracker.stop_tracking(
-                tracking_id, status="failed", message=str(e)
-            )
-            self.logger.error(f"Failed to ingest file: {e}")
-            raise ProcessingError(f"Failed to ingest file: {e}") from e
         except Exception as e:
             self.progress_tracker.stop_tracking(
                 tracking_id, status="failed", message=str(e)

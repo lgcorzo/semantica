@@ -639,7 +639,9 @@ def retry_on_error(
                     else:
                         raise
 
-            raise last_exception
+            if last_exception is not None:
+                raise last_exception
+            raise RuntimeError(f"Retry failed for {func.__name__} without capturing an exception")
 
         return wrapper
 
