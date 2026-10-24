@@ -22,12 +22,10 @@ Example Usage:
     >>> file_data = ingestor.ingest_file("file_id")
 """
 
-import json
 import os
 from dataclasses import dataclass, field
 from datetime import datetime
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from ..utils.exceptions import ProcessingError, ValidationError
 from ..utils.logging import get_logger
