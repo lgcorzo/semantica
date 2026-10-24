@@ -1640,454 +1640,6 @@ wheels = [
 ]
 
 [[package]]
-name = "darksemantica"
-version = "0.7.0"
-source = { editable = "." }
-dependencies = [
-    { name = "chardet" },
-    { name = "click" },
-    { name = "grpcio" },
-    { name = "httpx" },
-    { name = "loguru" },
-    { name = "networkx", version = "3.4.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
-    { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "pandas", version = "3.0.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "pillow" },
-    { name = "protobuf" },
-    { name = "pyarrow" },
-    { name = "pydantic" },
-    { name = "python-dotenv" },
-    { name = "pyyaml" },
-    { name = "rdflib" },
-    { name = "requests" },
-    { name = "rich" },
-    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "scikit-learn", version = "1.9.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
-    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "structlog" },
-    { name = "toml" },
-    { name = "tqdm" },
-]
-
-[package.optional-dependencies]
-agno = [
-    { name = "agno" },
-]
-all = [
-    { name = "semantica", extra = ["agno", "cloud", "documents", "embeddings-local", "explorer", "google-adk", "graph-all", "graph-embeddings", "infra", "ingest-arrow", "ingest-git", "ingest-parquet", "langchain", "llm-all", "media", "models-huggingface", "monitoring", "nlp-spacy", "parse-docling", "parse-pdf", "shacl", "split-all", "tripletstore-oxigraph", "vectorstore-all", "viz", "watch"] },
-]
-cloud = [
-    { name = "azure-storage-blob" },
-    { name = "boto3" },
-    { name = "google-cloud-storage" },
-]
-db-all = [
-    { name = "semantica", extra = ["db-arrow", "db-bigquery", "db-databricks", "db-redshift", "db-salesforce", "db-snowflake"] },
-]
-db-arrow = [
-    { name = "pyarrow" },
-]
-db-bigquery = [
-    { name = "google-cloud-bigquery" },
-]
-db-cassandra = [
-    { name = "cassandra-driver" },
-]
-db-databricks = [
-    { name = "databricks-sdk" },
-    { name = "databricks-sql-connector" },
-]
-db-redshift = [
-    { name = "redshift-connector" },
-]
-db-salesforce = [
-    { name = "simple-salesforce" },
-]
-db-snowflake = [
-    { name = "cryptography" },
-    { name = "snowflake-connector-python" },
-]
-documents = [
-    { name = "beautifulsoup4" },
-    { name = "lxml" },
-    { name = "openpyxl" },
-    { name = "python-docx" },
-]
-embeddings-local = [
-    { name = "fastembed" },
-    { name = "onnxruntime", version = "1.23.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "onnxruntime", version = "1.30.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "sentence-transformers" },
-    { name = "tokenizers" },
-]
-explorer = [
-    { name = "defusedxml" },
-    { name = "fastapi" },
-    { name = "python-multipart" },
-    { name = "starlette" },
-    { name = "uvicorn", extra = ["standard"] },
-    { name = "websockets" },
-]
-explorer-lite = [
-    { name = "streamlit" },
-    { name = "streamlit-agraph" },
-]
-google-adk = [
-    { name = "google-adk" },
-]
-gpu = [
-    { name = "cupy" },
-    { name = "faiss-gpu" },
-]
-graph-all = [
-    { name = "semantica", extra = ["graph-amazon-neptune", "graph-apache-age", "graph-embeddings", "graph-falkordb", "graph-neo4j"] },
-]
-graph-amazon-neptune = [
-    { name = "boto3" },
-    { name = "neo4j" },
-]
-graph-apache-age = [
-    { name = "psycopg2-binary" },
-]
-graph-embeddings = [
-    { name = "gensim" },
-]
-graph-falkordb = [
-    { name = "falkordb" },
-    { name = "redis" },
-]
-graph-neo4j = [
-    { name = "neo4j" },
-]
-infra = [
-    { name = "celery" },
-    { name = "kafka-python" },
-    { name = "pika" },
-    { name = "pulsar-client" },
-    { name = "redis" },
-]
-ingest-airflow = [
-    { name = "requests" },
-]
-ingest-arrow = [
-    { name = "pyarrow" },
-]
-ingest-dynamics365 = [
-    { name = "msal" },
-]
-ingest-git = [
-    { name = "gitpython" },
-]
-ingest-looker = [
-    { name = "looker-sdk" },
-]
-ingest-parquet = [
-    { name = "pyarrow" },
-]
-ingest-sap = [
-    { name = "requests" },
-]
-ingest-servicenow = [
-    { name = "requests" },
-]
-ingest-tableau = [
-    { name = "tableauserverclient" },
-]
-langchain = [
-    { name = "langchain-core" },
-]
-llm-all = [
-    { name = "semantica", extra = ["llm-anthropic", "llm-deepseek", "llm-gemini", "llm-groq", "llm-instructor", "llm-litellm", "llm-novita", "llm-ollama", "llm-openai"] },
-]
-llm-anthropic = [
-    { name = "anthropic" },
-]
-llm-deepseek = [
-    { name = "openai" },
-]
-llm-gemini = [
-    { name = "google-genai" },
-]
-llm-groq = [
-    { name = "groq" },
-]
-llm-instructor = [
-    { name = "instructor" },
-]
-llm-litellm = [
-    { name = "litellm" },
-]
-llm-novita = [
-    { name = "openai" },
-]
-llm-ollama = [
-    { name = "ollama" },
-]
-llm-openai = [
-    { name = "openai" },
-]
-llm-typesafe = [
-    { name = "typesafe-sdk" },
-]
-media = [
-    { name = "librosa", version = "0.11.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
-    { name = "librosa", version = "1.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "opencv-python" },
-]
-models-huggingface = [
-    { name = "torch" },
-    { name = "transformers" },
-]
-monitoring = [
-    { name = "opentelemetry-api" },
-    { name = "opentelemetry-instrumentation" },
-    { name = "opentelemetry-sdk" },
-    { name = "opentelemetry-semantic-conventions" },
-    { name = "prometheus-client" },
-]
-nlp-langdetect = [
-    { name = "langdetect" },
-]
-nlp-spacy = [
-    { name = "spacy" },
-]
-open-ontologies = [
-    { name = "open-ontologies-lite" },
-]
-parse-docling = [
-    { name = "docling" },
-]
-parse-pdf = [
-    { name = "pdfplumber" },
-]
-shacl = [
-    { name = "pyshacl" },
-]
-split-all = [
-    { name = "semantica", extra = ["split-community", "split-tiktoken", "split-topic"] },
-]
-split-community = [
-    { name = "python-louvain" },
-]
-split-tiktoken = [
-    { name = "tiktoken" },
-]
-split-topic = [
-    { name = "bertopic" },
-    { name = "gensim" },
-]
-tripletstore-oxigraph = [
-    { name = "pyoxigraph" },
-]
-vectorstore-all = [
-    { name = "semantica", extra = ["vectorstore-faiss", "vectorstore-milvus", "vectorstore-pgvector", "vectorstore-pinecone", "vectorstore-qdrant", "vectorstore-sqlite", "vectorstore-weaviate"] },
-]
-vectorstore-faiss = [
-    { name = "faiss-cpu" },
-]
-vectorstore-milvus = [
-    { name = "pymilvus" },
-]
-vectorstore-pgvector = [
-    { name = "pgvector" },
-    { name = "psycopg", extra = ["binary", "pool"] },
-]
-vectorstore-pinecone = [
-    { name = "pinecone" },
-]
-vectorstore-qdrant = [
-    { name = "qdrant-client" },
-]
-vectorstore-sqlite = [
-    { name = "sqlite-vec" },
-]
-vectorstore-weaviate = [
-    { name = "weaviate-client" },
-]
-viz = [
-    { name = "d3blocks" },
-    { name = "graphviz" },
-    { name = "ipywidgets" },
-    { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "matplotlib", version = "3.11.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "plotly" },
-    { name = "pyvis" },
-    { name = "seaborn" },
-    { name = "umap-learn" },
-]
-watch = [
-    { name = "watchdog" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "black" },
-    { name = "flake8" },
-    { name = "ipykernel" },
-    { name = "isort" },
-    { name = "jupyter" },
-    { name = "mypy" },
-    { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "agno", marker = "extra == 'agno'", specifier = ">=1.0.0" },
-    { name = "anthropic", marker = "extra == 'llm-anthropic'", specifier = ">=0.122.0" },
-    { name = "azure-storage-blob", marker = "extra == 'cloud'", specifier = ">=12.30.0" },
-    { name = "beautifulsoup4", marker = "extra == 'documents'", specifier = ">=4.15.0" },
-    { name = "bertopic", marker = "extra == 'split-topic'", specifier = ">=0.15.0" },
-    { name = "boto3", marker = "extra == 'cloud'", specifier = ">=1.24.0" },
-    { name = "boto3", marker = "extra == 'graph-amazon-neptune'", specifier = ">=1.24.0" },
-    { name = "cassandra-driver", marker = "extra == 'db-cassandra'", specifier = ">=3.29.0" },
-    { name = "celery", marker = "extra == 'infra'", specifier = ">=5.2.0" },
-    { name = "chardet", specifier = ">=7.4.3" },
-    { name = "click", specifier = ">=8.4.2" },
-    { name = "cryptography", marker = "extra == 'db-snowflake'", specifier = ">=49.0.0" },
-    { name = "cupy", marker = "extra == 'gpu'", specifier = ">=10.0.0" },
-    { name = "d3blocks", marker = "extra == 'viz'", specifier = ">=1.0.0" },
-    { name = "databricks-sdk", marker = "extra == 'db-databricks'", specifier = ">=0.60.0" },
-    { name = "databricks-sql-connector", marker = "extra == 'db-databricks'", specifier = ">=4.0.0" },
-    { name = "defusedxml", marker = "extra == 'explorer'", specifier = ">=0.7.1" },
-    { name = "docling", marker = "extra == 'parse-docling'", specifier = ">=2.132.0" },
-    { name = "faiss-cpu", marker = "extra == 'vectorstore-faiss'", specifier = ">=1.7.0" },
-    { name = "faiss-gpu", marker = "extra == 'gpu'", specifier = ">=1.7.0" },
-    { name = "falkordb", marker = "extra == 'graph-falkordb'", specifier = ">=1.0.0" },
-    { name = "fastapi", marker = "extra == 'explorer'", specifier = ">=0.109.2" },
-    { name = "fastembed", marker = "extra == 'embeddings-local'", specifier = ">=0.2.0" },
-    { name = "gensim", marker = "extra == 'graph-embeddings'", specifier = ">=4.4.0" },
-    { name = "gensim", marker = "extra == 'split-topic'", specifier = ">=4.4.0" },
-    { name = "gitpython", marker = "extra == 'ingest-git'", specifier = ">=3.1.58" },
-    { name = "google-adk", marker = "extra == 'google-adk'", specifier = ">=1.27.0" },
-    { name = "google-cloud-bigquery", marker = "extra == 'db-bigquery'", specifier = ">=3.0.0" },
-    { name = "google-cloud-storage", marker = "extra == 'cloud'", specifier = ">=2.5.0" },
-    { name = "google-genai", marker = "extra == 'llm-gemini'", specifier = ">=0.1.0" },
-    { name = "graphviz", marker = "extra == 'viz'", specifier = ">=0.21" },
-    { name = "groq", marker = "extra == 'llm-groq'", specifier = ">=0.4.0" },
-    { name = "grpcio", specifier = ">=1.81.1" },
-    { name = "httpx", specifier = "<0.29.0" },
-    { name = "instructor", marker = "extra == 'llm-instructor'", specifier = ">=1.15.3" },
-    { name = "ipywidgets", marker = "extra == 'viz'", specifier = ">=8.0.0" },
-    { name = "kafka-python", marker = "extra == 'infra'", specifier = ">=3.0.2" },
-    { name = "langchain-core", marker = "extra == 'langchain'", specifier = ">=0.3.0" },
-    { name = "langdetect", marker = "extra == 'nlp-langdetect'", specifier = ">=1.0.9" },
-    { name = "librosa", marker = "extra == 'media'", specifier = ">=0.9.0" },
-    { name = "litellm", marker = "extra == 'llm-litellm'", specifier = ">=1.83.9" },
-    { name = "loguru", specifier = ">=0.7.3" },
-    { name = "looker-sdk", marker = "extra == 'ingest-looker'", specifier = ">=24.0.0" },
-    { name = "lxml", marker = "extra == 'documents'", specifier = ">=6.1.1" },
-    { name = "matplotlib", marker = "extra == 'viz'", specifier = ">=3.9.4" },
-    { name = "msal", marker = "extra == 'ingest-dynamics365'", specifier = ">=1.20" },
-    { name = "neo4j", marker = "extra == 'graph-amazon-neptune'", specifier = ">=5.0.0" },
-    { name = "neo4j", marker = "extra == 'graph-neo4j'", specifier = ">=5.0.0" },
-    { name = "networkx", specifier = ">=2.8.0" },
-    { name = "numpy", specifier = ">=2.0.2" },
-    { name = "ollama", marker = "extra == 'llm-ollama'", specifier = ">=0.1.0" },
-    { name = "onnxruntime", marker = "extra == 'embeddings-local'", specifier = ">=1.20.1" },
-    { name = "open-ontologies-lite", marker = "extra == 'open-ontologies'", specifier = ">=0.5.0" },
-    { name = "openai", marker = "extra == 'llm-deepseek'", specifier = ">=1.0.0" },
-    { name = "openai", marker = "extra == 'llm-novita'", specifier = ">=1.0.0" },
-    { name = "openai", marker = "extra == 'llm-openai'", specifier = ">=1.0.0" },
-    { name = "opencv-python", marker = "extra == 'media'", specifier = ">=4.13.0.92" },
-    { name = "openpyxl", marker = "extra == 'documents'", specifier = ">=3.1.5" },
-    { name = "opentelemetry-api", marker = "extra == 'monitoring'", specifier = ">=1.30.0,<2.0.0" },
-    { name = "opentelemetry-instrumentation", marker = "extra == 'monitoring'", specifier = ">=0.62b1,<0.65" },
-    { name = "opentelemetry-sdk", marker = "extra == 'monitoring'", specifier = ">=1.30.0,<2.0.0" },
-    { name = "opentelemetry-semantic-conventions", marker = "extra == 'monitoring'", specifier = ">=0.58b0,<0.65" },
-    { name = "pandas", specifier = ">=1.3.0" },
-    { name = "pdfplumber", marker = "extra == 'parse-pdf'", specifier = ">=0.10.0" },
-    { name = "pgvector", marker = "extra == 'vectorstore-pgvector'", specifier = ">=0.2.0" },
-    { name = "pika", marker = "extra == 'infra'", specifier = ">=1.3.0" },
-    { name = "pillow", specifier = ">=12.2.0" },
-    { name = "pinecone", marker = "extra == 'vectorstore-pinecone'", specifier = ">=3.0.0" },
-    { name = "plotly", marker = "extra == 'viz'", specifier = ">=6.8.0" },
-    { name = "prometheus-client", marker = "extra == 'monitoring'", specifier = ">=0.14.0" },
-    { name = "protobuf", specifier = ">=5.29.1,<8.0" },
-    { name = "psycopg", extras = ["binary", "pool"], marker = "extra == 'vectorstore-pgvector'", specifier = ">=3.0.0" },
-    { name = "psycopg2-binary", marker = "extra == 'graph-apache-age'", specifier = ">=2.9.0" },
-    { name = "pulsar-client", marker = "extra == 'infra'", specifier = ">=3.0.0" },
-    { name = "pyarrow", specifier = ">=14.0.0" },
-    { name = "pyarrow", marker = "extra == 'db-arrow'", specifier = ">=24.0.0" },
-    { name = "pyarrow", marker = "extra == 'ingest-arrow'", specifier = ">=24.0.0" },
-    { name = "pyarrow", marker = "extra == 'ingest-parquet'", specifier = ">=24.0.0" },
-    { name = "pydantic", specifier = ">=2.13.4" },
-    { name = "pymilvus", marker = "extra == 'vectorstore-milvus'", specifier = ">=2.0.0" },
-    { name = "pyoxigraph", marker = "extra == 'tripletstore-oxigraph'", specifier = ">=0.5.0" },
-    { name = "pyshacl", marker = "extra == 'shacl'", specifier = ">=0.25.0" },
-    { name = "python-docx", marker = "extra == 'documents'", specifier = ">=1.2.0" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
-    { name = "python-louvain", marker = "extra == 'split-community'", specifier = ">=0.16" },
-    { name = "python-multipart", marker = "extra == 'explorer'", specifier = ">=0.0.7" },
-    { name = "pyvis", marker = "extra == 'viz'", specifier = ">=0.3.0" },
-    { name = "pyyaml", specifier = ">=6.0" },
-    { name = "qdrant-client", marker = "extra == 'vectorstore-qdrant'", specifier = ">=1.10.0" },
-    { name = "rdflib", specifier = ">=6.2.0" },
-    { name = "redis", marker = "extra == 'graph-falkordb'", specifier = ">=4.3.0" },
-    { name = "redis", marker = "extra == 'infra'", specifier = ">=4.3.0" },
-    { name = "redshift-connector", marker = "extra == 'db-redshift'", specifier = ">=2.0.0" },
-    { name = "requests", specifier = ">=2.34.2" },
-    { name = "requests", marker = "extra == 'ingest-airflow'", specifier = ">=2.28.0" },
-    { name = "requests", marker = "extra == 'ingest-sap'", specifier = ">=2.28.0" },
-    { name = "requests", marker = "extra == 'ingest-servicenow'", specifier = ">=2.28.0" },
-    { name = "rich", specifier = ">=12.5.0" },
-    { name = "scikit-learn", specifier = ">=1.7.2" },
-    { name = "scipy", specifier = ">=1.13.1" },
-    { name = "seaborn", marker = "extra == 'viz'", specifier = ">=0.13.2" },
-    { name = "semantica", extras = ["db-snowflake", "db-databricks", "db-salesforce", "db-redshift", "db-cassandra", "db-bigquery", "db-arrow"], marker = "extra == 'db-all'" },
-    { name = "semantica", extras = ["graph-neo4j", "graph-falkordb", "graph-amazon-neptune", "graph-apache-age", "graph-embeddings"], marker = "extra == 'graph-all'" },
-    { name = "semantica", extras = ["llm-openai", "llm-groq", "llm-gemini", "llm-anthropic", "llm-ollama", "llm-deepseek", "llm-novita", "llm-litellm", "llm-instructor", "llm-typesafe"], marker = "extra == 'llm-all'" },
-    { name = "semantica", extras = ["split-tiktoken", "split-community", "split-topic"], marker = "extra == 'split-all'" },
-    { name = "semantica", extras = ["vectorstore-qdrant", "vectorstore-weaviate", "vectorstore-pinecone", "vectorstore-milvus", "vectorstore-pgvector", "vectorstore-sqlite", "vectorstore-faiss"], marker = "extra == 'vectorstore-all'" },
-    { name = "semantica", extras = ["viz", "media", "infra", "cloud", "monitoring", "watch", "llm-all", "models-huggingface", "embeddings-local", "nlp-spacy", "nlp-langdetect", "documents", "ingest-git", "graph-embeddings", "split-all", "graph-all", "tripletstore-oxigraph", "vectorstore-all", "parse-docling", "parse-pdf", "ingest-parquet", "ingest-arrow", "shacl", "explorer", "agno", "langchain", "google-adk"], marker = "extra == 'all'" },
-    { name = "sentence-transformers", marker = "extra == 'embeddings-local'", specifier = ">=2.2.0" },
-    { name = "simple-salesforce", marker = "extra == 'db-salesforce'", specifier = ">=1.12.0" },
-    { name = "snowflake-connector-python", marker = "extra == 'db-snowflake'", specifier = ">=4.6.0" },
-    { name = "spacy", marker = "extra == 'nlp-spacy'", specifier = ">=3.4.0" },
-    { name = "sqlite-vec", marker = "extra == 'vectorstore-sqlite'", specifier = ">=0.1.1" },
-    { name = "starlette", marker = "extra == 'explorer'", specifier = ">=0.53.0" },
-    { name = "streamlit", marker = "extra == 'explorer-lite'", specifier = ">=1.25.0" },
-    { name = "streamlit-agraph", marker = "extra == 'explorer-lite'", specifier = ">=0.0.45" },
-    { name = "structlog", specifier = ">=22.1.0" },
-    { name = "tableauserverclient", marker = "extra == 'ingest-tableau'", specifier = ">=0.25" },
-    { name = "tiktoken", marker = "extra == 'split-tiktoken'", specifier = ">=0.5.0" },
-    { name = "tokenizers", marker = "extra == 'embeddings-local'", specifier = ">=0.15.0" },
-    { name = "toml", specifier = ">=0.10.0" },
-    { name = "torch", marker = "extra == 'models-huggingface'", specifier = ">=1.13.1" },
-    { name = "tqdm", specifier = ">=4.68.3" },
-    { name = "transformers", marker = "extra == 'models-huggingface'", specifier = ">=4.20.0" },
-    { name = "typesafe-sdk", marker = "python_full_version >= '3.10' and extra == 'llm-typesafe'", specifier = ">=0.7.0,<0.8.0" },
-    { name = "umap-learn", marker = "extra == 'viz'", specifier = ">=0.5.12" },
-    { name = "uvicorn", extras = ["standard"], marker = "extra == 'explorer'", specifier = ">=0.22.0" },
-    { name = "watchdog", marker = "extra == 'watch'", specifier = ">=6.0.0" },
-    { name = "weaviate-client", marker = "extra == 'vectorstore-weaviate'", specifier = ">=4.0.0" },
-    { name = "websockets", marker = "extra == 'explorer'", specifier = ">=15.0.1" },
-]
-provides-extras = ["llm-openai", "llm-groq", "llm-gemini", "llm-anthropic", "llm-ollama", "llm-deepseek", "llm-novita", "llm-litellm", "llm-instructor", "llm-typesafe", "llm-all", "documents", "parse-docling", "parse-pdf", "shacl", "db-snowflake", "db-databricks", "db-arrow", "db-salesforce", "db-redshift", "ingest-dynamics365", "db-cassandra", "db-bigquery", "ingest-looker", "ingest-parquet", "ingest-arrow", "ingest-tableau", "ingest-sap", "ingest-servicenow", "ingest-airflow", "ingest-git", "db-all", "models-huggingface", "embeddings-local", "nlp-spacy", "nlp-langdetect", "graph-neo4j", "graph-falkordb", "graph-amazon-neptune", "graph-apache-age", "graph-embeddings", "graph-all", "tripletstore-oxigraph", "vectorstore-faiss", "vectorstore-qdrant", "vectorstore-weaviate", "vectorstore-pinecone", "vectorstore-milvus", "vectorstore-pgvector", "vectorstore-sqlite", "vectorstore-all", "infra", "cloud", "monitoring", "viz", "media", "gpu", "agno", "langchain", "google-adk", "open-ontologies", "watch", "split-tiktoken", "split-community", "split-topic", "split-all", "explorer", "explorer-lite", "all"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "black", specifier = ">=22.6.0" },
-    { name = "flake8", specifier = ">=4.0.0" },
-    { name = "ipykernel", specifier = ">=6.15.0" },
-    { name = "isort", specifier = ">=6.1.0" },
-    { name = "jupyter", specifier = ">=1.0.0" },
-    { name = "mypy", specifier = ">=0.971" },
-    { name = "pre-commit", specifier = ">=4.6.0" },
-    { name = "pytest", specifier = ">=7.1.0" },
-    { name = "pytest-asyncio", specifier = ">=0.19.0" },
-    { name = "pytest-cov", specifier = ">=7.1.0" },
-]
-
-[[package]]
 name = "databricks-sdk"
 version = "0.140.0"
 source = { registry = "https://pypi.org/simple" }
@@ -8712,7 +8264,7 @@ wheels = [
 [[package]]
 name = "semantica"
 version = "0.7.0"
-source = { registry = "https://pypi.org/simple" }
+source = { editable = "." }
 dependencies = [
     { name = "chardet" },
     { name = "click" },
@@ -8744,25 +8296,114 @@ dependencies = [
     { name = "toml" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8d/f4/367b97067c9b5877df2ff0c0187fbef99f83a119368e714f7cae9b6d13b8/semantica-0.7.0.tar.gz", hash = "sha256:9da8ab2c204874e2720bdd36040524c958ade23e7378ccefbfea5d2b340f420f", size = 2714872, upload-time = "2026-09-22T11:17:41.932Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/fd/39/16fec781a0fa0c9cf931d1fa27bedff12e5ca55996c0a7cefe2821b2c10e/semantica-0.7.0-py3-none-any.whl", hash = "sha256:faf27d6259ae813ddb44c5213e2f8867592f27e6e3d6b47cea10f1844513799f", size = 2691390, upload-time = "2026-09-22T11:17:39.963Z" },
-]
 
 [package.optional-dependencies]
 agno = [
     { name = "agno" },
+]
+all = [
+    { name = "agno" },
+    { name = "anthropic" },
+    { name = "azure-storage-blob" },
+    { name = "beautifulsoup4" },
+    { name = "bertopic" },
+    { name = "boto3" },
+    { name = "celery" },
+    { name = "d3blocks" },
+    { name = "defusedxml" },
+    { name = "docling" },
+    { name = "faiss-cpu" },
+    { name = "falkordb" },
+    { name = "fastapi" },
+    { name = "fastembed" },
+    { name = "gensim" },
+    { name = "gitpython" },
+    { name = "google-adk" },
+    { name = "google-cloud-storage" },
+    { name = "google-genai" },
+    { name = "graphviz" },
+    { name = "groq" },
+    { name = "instructor" },
+    { name = "ipywidgets" },
+    { name = "kafka-python" },
+    { name = "langchain-core" },
+    { name = "langdetect" },
+    { name = "librosa", version = "0.11.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "librosa", version = "1.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "litellm" },
+    { name = "lxml" },
+    { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "matplotlib", version = "3.11.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "neo4j" },
+    { name = "ollama" },
+    { name = "onnxruntime", version = "1.23.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "onnxruntime", version = "1.30.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "openai" },
+    { name = "opencv-python" },
+    { name = "openpyxl" },
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-instrumentation" },
+    { name = "opentelemetry-sdk" },
+    { name = "opentelemetry-semantic-conventions" },
+    { name = "pdfplumber" },
+    { name = "pgvector" },
+    { name = "pika" },
+    { name = "pinecone" },
+    { name = "plotly" },
+    { name = "prometheus-client" },
+    { name = "psycopg", extra = ["binary", "pool"] },
+    { name = "psycopg2-binary" },
+    { name = "pulsar-client" },
+    { name = "pyarrow" },
+    { name = "pymilvus" },
+    { name = "pyoxigraph" },
+    { name = "pyshacl" },
+    { name = "python-docx" },
+    { name = "python-louvain" },
+    { name = "python-multipart" },
+    { name = "pyvis" },
+    { name = "qdrant-client" },
+    { name = "redis" },
+    { name = "seaborn" },
+    { name = "sentence-transformers" },
+    { name = "spacy" },
+    { name = "sqlite-vec" },
+    { name = "starlette" },
+    { name = "tiktoken" },
+    { name = "tokenizers" },
+    { name = "torch" },
+    { name = "transformers" },
+    { name = "typesafe-sdk" },
+    { name = "umap-learn" },
+    { name = "uvicorn", extra = ["standard"] },
+    { name = "watchdog" },
+    { name = "weaviate-client" },
+    { name = "websockets" },
 ]
 cloud = [
     { name = "azure-storage-blob" },
     { name = "boto3" },
     { name = "google-cloud-storage" },
 ]
+db-all = [
+    { name = "cassandra-driver" },
+    { name = "cryptography" },
+    { name = "databricks-sdk" },
+    { name = "databricks-sql-connector" },
+    { name = "google-cloud-bigquery" },
+    { name = "pyarrow" },
+    { name = "redshift-connector" },
+    { name = "simple-salesforce" },
+    { name = "snowflake-connector-python" },
+]
 db-arrow = [
     { name = "pyarrow" },
 ]
 db-bigquery = [
     { name = "google-cloud-bigquery" },
+]
+db-cassandra = [
+    { name = "cassandra-driver" },
 ]
 db-databricks = [
     { name = "databricks-sdk" },
@@ -8799,8 +8440,16 @@ explorer = [
     { name = "uvicorn", extra = ["standard"] },
     { name = "websockets" },
 ]
+explorer-lite = [
+    { name = "streamlit" },
+    { name = "streamlit-agraph" },
+]
 google-adk = [
     { name = "google-adk" },
+]
+gpu = [
+    { name = "cupy" },
+    { name = "faiss-gpu" },
 ]
 graph-all = [
     { name = "boto3" },
@@ -8834,14 +8483,32 @@ infra = [
     { name = "pulsar-client" },
     { name = "redis" },
 ]
+ingest-airflow = [
+    { name = "requests" },
+]
 ingest-arrow = [
     { name = "pyarrow" },
+]
+ingest-dynamics365 = [
+    { name = "msal" },
 ]
 ingest-git = [
     { name = "gitpython" },
 ]
+ingest-looker = [
+    { name = "looker-sdk" },
+]
 ingest-parquet = [
     { name = "pyarrow" },
+]
+ingest-sap = [
+    { name = "requests" },
+]
+ingest-servicenow = [
+    { name = "requests" },
+]
+ingest-tableau = [
+    { name = "tableauserverclient" },
 ]
 langchain = [
     { name = "langchain-core" },
@@ -8854,6 +8521,7 @@ llm-all = [
     { name = "litellm" },
     { name = "ollama" },
     { name = "openai" },
+    { name = "typesafe-sdk" },
 ]
 llm-anthropic = [
     { name = "anthropic" },
@@ -8882,6 +8550,9 @@ llm-ollama = [
 llm-openai = [
     { name = "openai" },
 ]
+llm-typesafe = [
+    { name = "typesafe-sdk" },
+]
 media = [
     { name = "librosa", version = "0.11.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "librosa", version = "1.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
@@ -8898,8 +8569,14 @@ monitoring = [
     { name = "opentelemetry-semantic-conventions" },
     { name = "prometheus-client" },
 ]
+nlp-langdetect = [
+    { name = "langdetect" },
+]
 nlp-spacy = [
     { name = "spacy" },
+]
+open-ontologies = [
+    { name = "open-ontologies-lite" },
 ]
 parse-docling = [
     { name = "docling" },
@@ -8974,6 +8651,168 @@ viz = [
 ]
 watch = [
     { name = "watchdog" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "black" },
+    { name = "flake8" },
+    { name = "ipykernel" },
+    { name = "isort" },
+    { name = "jupyter" },
+    { name = "mypy" },
+    { name = "pre-commit" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "agno", marker = "extra == 'agno'", specifier = ">=1.0.0" },
+    { name = "anthropic", marker = "extra == 'llm-anthropic'", specifier = ">=0.122.0" },
+    { name = "azure-storage-blob", marker = "extra == 'cloud'", specifier = ">=12.30.0" },
+    { name = "beautifulsoup4", marker = "extra == 'documents'", specifier = ">=4.15.0" },
+    { name = "bertopic", marker = "extra == 'split-topic'", specifier = ">=0.15.0" },
+    { name = "boto3", marker = "extra == 'cloud'", specifier = ">=1.24.0" },
+    { name = "boto3", marker = "extra == 'graph-amazon-neptune'", specifier = ">=1.24.0" },
+    { name = "cassandra-driver", marker = "extra == 'db-cassandra'", specifier = ">=3.29.0" },
+    { name = "celery", marker = "extra == 'infra'", specifier = ">=5.2.0" },
+    { name = "chardet", specifier = ">=7.4.3" },
+    { name = "click", specifier = ">=8.4.2" },
+    { name = "cryptography", marker = "extra == 'db-snowflake'", specifier = ">=49.0.0" },
+    { name = "cupy", marker = "extra == 'gpu'", specifier = ">=10.0.0" },
+    { name = "d3blocks", marker = "extra == 'viz'", specifier = ">=1.0.0" },
+    { name = "databricks-sdk", marker = "extra == 'db-databricks'", specifier = ">=0.60.0" },
+    { name = "databricks-sql-connector", marker = "extra == 'db-databricks'", specifier = ">=4.0.0" },
+    { name = "defusedxml", marker = "extra == 'explorer'", specifier = ">=0.7.1" },
+    { name = "docling", marker = "extra == 'parse-docling'", specifier = ">=2.132.0" },
+    { name = "faiss-cpu", marker = "extra == 'vectorstore-faiss'", specifier = ">=1.7.0" },
+    { name = "faiss-gpu", marker = "extra == 'gpu'", specifier = ">=1.7.0" },
+    { name = "falkordb", marker = "extra == 'graph-falkordb'", specifier = ">=1.0.0" },
+    { name = "fastapi", marker = "extra == 'explorer'", specifier = ">=0.109.2" },
+    { name = "fastembed", marker = "extra == 'embeddings-local'", specifier = ">=0.2.0" },
+    { name = "gensim", marker = "extra == 'graph-embeddings'", specifier = ">=4.4.0" },
+    { name = "gensim", marker = "extra == 'split-topic'", specifier = ">=4.4.0" },
+    { name = "gitpython", marker = "extra == 'ingest-git'", specifier = ">=3.1.58" },
+    { name = "google-adk", marker = "extra == 'google-adk'", specifier = ">=1.27.0" },
+    { name = "google-cloud-bigquery", marker = "extra == 'db-bigquery'", specifier = ">=3.0.0" },
+    { name = "google-cloud-storage", marker = "extra == 'cloud'", specifier = ">=2.5.0" },
+    { name = "google-genai", marker = "extra == 'llm-gemini'", specifier = ">=0.1.0" },
+    { name = "graphviz", marker = "extra == 'viz'", specifier = ">=0.21" },
+    { name = "groq", marker = "extra == 'llm-groq'", specifier = ">=0.4.0" },
+    { name = "grpcio", specifier = ">=1.81.1" },
+    { name = "httpx", specifier = "<0.29.0" },
+    { name = "instructor", marker = "extra == 'llm-instructor'", specifier = ">=1.15.3" },
+    { name = "ipywidgets", marker = "extra == 'viz'", specifier = ">=8.0.0" },
+    { name = "kafka-python", marker = "extra == 'infra'", specifier = ">=3.0.2" },
+    { name = "langchain-core", marker = "extra == 'langchain'", specifier = ">=0.3.0" },
+    { name = "langdetect", marker = "extra == 'nlp-langdetect'", specifier = ">=1.0.9" },
+    { name = "librosa", marker = "extra == 'media'", specifier = ">=0.9.0" },
+    { name = "litellm", marker = "extra == 'llm-litellm'", specifier = ">=1.83.9" },
+    { name = "loguru", specifier = ">=0.7.3" },
+    { name = "looker-sdk", marker = "extra == 'ingest-looker'", specifier = ">=24.0.0" },
+    { name = "lxml", marker = "extra == 'documents'", specifier = ">=6.1.1" },
+    { name = "matplotlib", marker = "extra == 'viz'", specifier = ">=3.9.4" },
+    { name = "msal", marker = "extra == 'ingest-dynamics365'", specifier = ">=1.20" },
+    { name = "neo4j", marker = "extra == 'graph-amazon-neptune'", specifier = ">=5.0.0" },
+    { name = "neo4j", marker = "extra == 'graph-neo4j'", specifier = ">=5.0.0" },
+    { name = "networkx", specifier = ">=2.8.0" },
+    { name = "numpy", specifier = ">=2.0.2" },
+    { name = "ollama", marker = "extra == 'llm-ollama'", specifier = ">=0.1.0" },
+    { name = "onnxruntime", marker = "extra == 'embeddings-local'", specifier = ">=1.20.1" },
+    { name = "open-ontologies-lite", marker = "extra == 'open-ontologies'", specifier = ">=0.5.0" },
+    { name = "openai", marker = "extra == 'llm-deepseek'", specifier = ">=1.0.0" },
+    { name = "openai", marker = "extra == 'llm-novita'", specifier = ">=1.0.0" },
+    { name = "openai", marker = "extra == 'llm-openai'", specifier = ">=1.0.0" },
+    { name = "opencv-python", marker = "extra == 'media'", specifier = ">=4.13.0.92" },
+    { name = "openpyxl", marker = "extra == 'documents'", specifier = ">=3.1.5" },
+    { name = "opentelemetry-api", marker = "extra == 'monitoring'", specifier = ">=1.30.0,<2.0.0" },
+    { name = "opentelemetry-instrumentation", marker = "extra == 'monitoring'", specifier = ">=0.62b1,<0.65" },
+    { name = "opentelemetry-sdk", marker = "extra == 'monitoring'", specifier = ">=1.30.0,<2.0.0" },
+    { name = "opentelemetry-semantic-conventions", marker = "extra == 'monitoring'", specifier = ">=0.58b0,<0.65" },
+    { name = "pandas", specifier = ">=1.3.0" },
+    { name = "pdfplumber", marker = "extra == 'parse-pdf'", specifier = ">=0.10.0" },
+    { name = "pgvector", marker = "extra == 'vectorstore-pgvector'", specifier = ">=0.2.0" },
+    { name = "pika", marker = "extra == 'infra'", specifier = ">=1.3.0" },
+    { name = "pillow", specifier = ">=12.2.0" },
+    { name = "pinecone", marker = "extra == 'vectorstore-pinecone'", specifier = ">=3.0.0" },
+    { name = "plotly", marker = "extra == 'viz'", specifier = ">=6.8.0" },
+    { name = "prometheus-client", marker = "extra == 'monitoring'", specifier = ">=0.14.0" },
+    { name = "protobuf", specifier = ">=5.29.1,<8.0" },
+    { name = "psycopg", extras = ["binary", "pool"], marker = "extra == 'vectorstore-pgvector'", specifier = ">=3.0.0" },
+    { name = "psycopg2-binary", marker = "extra == 'graph-apache-age'", specifier = ">=2.9.0" },
+    { name = "pulsar-client", marker = "extra == 'infra'", specifier = ">=3.0.0" },
+    { name = "pyarrow", specifier = ">=14.0.0" },
+    { name = "pyarrow", marker = "extra == 'db-arrow'", specifier = ">=24.0.0" },
+    { name = "pyarrow", marker = "extra == 'ingest-arrow'", specifier = ">=24.0.0" },
+    { name = "pyarrow", marker = "extra == 'ingest-parquet'", specifier = ">=24.0.0" },
+    { name = "pydantic", specifier = ">=2.13.4" },
+    { name = "pymilvus", marker = "extra == 'vectorstore-milvus'", specifier = ">=2.0.0" },
+    { name = "pyoxigraph", marker = "extra == 'tripletstore-oxigraph'", specifier = ">=0.5.0" },
+    { name = "pyshacl", marker = "extra == 'shacl'", specifier = ">=0.25.0" },
+    { name = "python-docx", marker = "extra == 'documents'", specifier = ">=1.2.0" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
+    { name = "python-louvain", marker = "extra == 'split-community'", specifier = ">=0.16" },
+    { name = "python-multipart", marker = "extra == 'explorer'", specifier = ">=0.0.7" },
+    { name = "pyvis", marker = "extra == 'viz'", specifier = ">=0.3.0" },
+    { name = "pyyaml", specifier = ">=6.0" },
+    { name = "qdrant-client", marker = "extra == 'vectorstore-qdrant'", specifier = ">=1.10.0" },
+    { name = "rdflib", specifier = ">=6.2.0" },
+    { name = "redis", marker = "extra == 'graph-falkordb'", specifier = ">=4.3.0" },
+    { name = "redis", marker = "extra == 'infra'", specifier = ">=4.3.0" },
+    { name = "redshift-connector", marker = "extra == 'db-redshift'", specifier = ">=2.0.0" },
+    { name = "requests", specifier = ">=2.34.2" },
+    { name = "requests", marker = "extra == 'ingest-airflow'", specifier = ">=2.28.0" },
+    { name = "requests", marker = "extra == 'ingest-sap'", specifier = ">=2.28.0" },
+    { name = "requests", marker = "extra == 'ingest-servicenow'", specifier = ">=2.28.0" },
+    { name = "rich", specifier = ">=12.5.0" },
+    { name = "scikit-learn", specifier = ">=1.7.2" },
+    { name = "scipy", specifier = ">=1.13.1" },
+    { name = "seaborn", marker = "extra == 'viz'", specifier = ">=0.13.2" },
+    { name = "semantica", extras = ["db-snowflake", "db-databricks", "db-salesforce", "db-redshift", "db-cassandra", "db-bigquery", "db-arrow"], marker = "extra == 'db-all'" },
+    { name = "semantica", extras = ["graph-neo4j", "graph-falkordb", "graph-amazon-neptune", "graph-apache-age", "graph-embeddings"], marker = "extra == 'graph-all'" },
+    { name = "semantica", extras = ["llm-openai", "llm-groq", "llm-gemini", "llm-anthropic", "llm-ollama", "llm-deepseek", "llm-novita", "llm-litellm", "llm-instructor", "llm-typesafe"], marker = "extra == 'llm-all'" },
+    { name = "semantica", extras = ["split-tiktoken", "split-community", "split-topic"], marker = "extra == 'split-all'" },
+    { name = "semantica", extras = ["vectorstore-qdrant", "vectorstore-weaviate", "vectorstore-pinecone", "vectorstore-milvus", "vectorstore-pgvector", "vectorstore-sqlite", "vectorstore-faiss"], marker = "extra == 'vectorstore-all'" },
+    { name = "semantica", extras = ["viz", "media", "infra", "cloud", "monitoring", "watch", "llm-all", "models-huggingface", "embeddings-local", "nlp-spacy", "nlp-langdetect", "documents", "ingest-git", "graph-embeddings", "split-all", "graph-all", "tripletstore-oxigraph", "vectorstore-all", "parse-docling", "parse-pdf", "ingest-parquet", "ingest-arrow", "shacl", "explorer", "agno", "langchain", "google-adk"], marker = "extra == 'all'" },
+    { name = "sentence-transformers", marker = "extra == 'embeddings-local'", specifier = ">=2.2.0" },
+    { name = "simple-salesforce", marker = "extra == 'db-salesforce'", specifier = ">=1.12.0" },
+    { name = "snowflake-connector-python", marker = "extra == 'db-snowflake'", specifier = ">=4.6.0" },
+    { name = "spacy", marker = "extra == 'nlp-spacy'", specifier = ">=3.4.0" },
+    { name = "sqlite-vec", marker = "extra == 'vectorstore-sqlite'", specifier = ">=0.1.1" },
+    { name = "starlette", marker = "extra == 'explorer'", specifier = ">=0.53.0" },
+    { name = "streamlit", marker = "extra == 'explorer-lite'", specifier = ">=1.25.0" },
+    { name = "streamlit-agraph", marker = "extra == 'explorer-lite'", specifier = ">=0.0.45" },
+    { name = "structlog", specifier = ">=22.1.0" },
+    { name = "tableauserverclient", marker = "extra == 'ingest-tableau'", specifier = ">=0.25" },
+    { name = "tiktoken", marker = "extra == 'split-tiktoken'", specifier = ">=0.5.0" },
+    { name = "tokenizers", marker = "extra == 'embeddings-local'", specifier = ">=0.15.0" },
+    { name = "toml", specifier = ">=0.10.0" },
+    { name = "torch", marker = "extra == 'models-huggingface'", specifier = ">=1.13.1" },
+    { name = "tqdm", specifier = ">=4.68.3" },
+    { name = "transformers", marker = "extra == 'models-huggingface'", specifier = ">=4.20.0" },
+    { name = "typesafe-sdk", marker = "python_full_version >= '3.10' and extra == 'llm-typesafe'", specifier = ">=0.7.0,<0.8.0" },
+    { name = "umap-learn", marker = "extra == 'viz'", specifier = ">=0.5.12" },
+    { name = "uvicorn", extras = ["standard"], marker = "extra == 'explorer'", specifier = ">=0.22.0" },
+    { name = "watchdog", marker = "extra == 'watch'", specifier = ">=6.0.0" },
+    { name = "weaviate-client", marker = "extra == 'vectorstore-weaviate'", specifier = ">=4.0.0" },
+    { name = "websockets", marker = "extra == 'explorer'", specifier = ">=15.0.1" },
+]
+provides-extras = ["llm-openai", "llm-groq", "llm-gemini", "llm-anthropic", "llm-ollama", "llm-deepseek", "llm-novita", "llm-litellm", "llm-instructor", "llm-typesafe", "llm-all", "documents", "parse-docling", "parse-pdf", "shacl", "db-snowflake", "db-databricks", "db-arrow", "db-salesforce", "db-redshift", "ingest-dynamics365", "db-cassandra", "db-bigquery", "ingest-looker", "ingest-parquet", "ingest-arrow", "ingest-tableau", "ingest-sap", "ingest-servicenow", "ingest-airflow", "ingest-git", "db-all", "models-huggingface", "embeddings-local", "nlp-spacy", "nlp-langdetect", "graph-neo4j", "graph-falkordb", "graph-amazon-neptune", "graph-apache-age", "graph-embeddings", "graph-all", "tripletstore-oxigraph", "vectorstore-faiss", "vectorstore-qdrant", "vectorstore-weaviate", "vectorstore-pinecone", "vectorstore-milvus", "vectorstore-pgvector", "vectorstore-sqlite", "vectorstore-all", "infra", "cloud", "monitoring", "viz", "media", "gpu", "agno", "langchain", "google-adk", "open-ontologies", "watch", "split-tiktoken", "split-community", "split-topic", "split-all", "explorer", "explorer-lite", "all"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "black", specifier = ">=22.6.0" },
+    { name = "flake8", specifier = ">=4.0.0" },
+    { name = "ipykernel", specifier = ">=6.15.0" },
+    { name = "isort", specifier = ">=6.1.0" },
+    { name = "jupyter", specifier = ">=1.0.0" },
+    { name = "mypy", specifier = ">=0.971" },
+    { name = "pre-commit", specifier = ">=4.6.0" },
+    { name = "pytest", specifier = ">=7.1.0" },
+    { name = "pytest-asyncio", specifier = ">=0.19.0" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
 ]
 
 [[package]]
