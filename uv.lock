@@ -19,8 +19,7 @@ resolution-markers = [
 
 [manifest]
 overrides = [
-    { name = "filelock", marker = "python_full_version < '3.11'", specifier = ">=4.1.0" },
-    { name = "filelock", marker = "python_full_version >= '3.11'", specifier = ">=4.2.4" },
+    { name = "filelock", specifier = ">=3.17.0" },
     { name = "oauthlib", specifier = ">=4.0.0" },
     { name = "setuptools", specifier = ">=84.2.1" },
 ]
