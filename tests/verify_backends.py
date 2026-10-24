@@ -113,7 +113,7 @@ def verify_backend(backend_name: str, config: Dict[str, Any]) -> bool:
         if store:
             try:
                 store.close()
-            except:
+            except Exception:
                 pass
 
 def main():

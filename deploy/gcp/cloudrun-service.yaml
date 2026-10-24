@@ -5,6 +5,7 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: knowledge-explorer
+  namespace: semantica
   annotations:
     # Use 'internal-and-cloud-load-balancing' or 'internal' in production.
     # 'all' permits direct unauthenticated public internet access.

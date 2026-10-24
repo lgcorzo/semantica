@@ -318,7 +318,7 @@ class TestComprehensiveIntegration:
                         path = path_finder.bfs_shortest_path(network_graph, source, target)
                         if path:
                             path_results[f"{source}->{target}"] = path
-                    except:
+                    except Exception:
                         continue
         
         # Track path analysis

@@ -258,8 +258,6 @@ def _build_runtime_config(
 def _setup_cli_logging(
     logging_config: Dict[str, Any],
     *,
-    quiet: bool = False,
-    json_output: bool = False,
     allow_file_fallback: bool = True,
 ) -> None:
     """Initialize logging without making the default log file a startup blocker.
@@ -272,16 +270,12 @@ def _setup_cli_logging(
     """
     try:
         setup_logging(config=logging_config)
-    except OSError as exc:
+    except OSError:
         if not allow_file_fallback:
             raise
 
         fallback_config = {**logging_config, "file": None}
         setup_logging(config=fallback_config)
-        # Do not emit a warning: completion scripts and machine-readable
-        # commands must keep stdout/stderr stable when the default log file is
-        # unavailable. Explicitly configured log-file failures still raise.
-        del quiet, json_output, exc  # suppress unused-variable lint
 
 
 def _get_framework(cli_ctx: CLIContext) -> "Semantica":

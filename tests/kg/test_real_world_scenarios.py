@@ -651,7 +651,7 @@ class TestRealWorldScenarios:
                     path = path_finder.dijkstra_shortest_path(supply_chain_network, supplier, retailer)
                     if path:
                         supply_paths[f"{supplier}->{retailer}"] = path
-                except:
+                except Exception:
                     continue
         
         # Track path analysis

@@ -122,7 +122,10 @@ from collections import defaultdict, deque
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set, Tuple, Union
+
+if TYPE_CHECKING:
+    from .decision_models import Decision
 
 import yaml
 
@@ -182,9 +185,6 @@ try:
         CentralityCalculator,
         CommunityDetector,
         ConnectivityAnalyzer,
-        GraphAnalyzer,
-        GraphBuilder,
-        LinkPredictor,
         NodeEmbedder,
         PathFinder,
         SimilarityCalculator,
@@ -3841,8 +3841,6 @@ class ContextGraph:
         Returns:
             Decision ID
         """
-        from .decision_models import Decision
-
         if decision is not None and (
             any(v is not None for v in (
                 category, scenario, reasoning, outcome, entities, valid_from, valid_until,
@@ -5574,7 +5572,7 @@ class ContextGraph:
                     if isinstance(item, dict)
                 )
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Structural similarity calculation failed")
         
         return 0.0

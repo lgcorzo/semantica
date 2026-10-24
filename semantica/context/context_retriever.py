@@ -78,7 +78,10 @@ License: MIT
 
 from datetime import datetime, timezone
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union
+
+if TYPE_CHECKING:
+    from .decision_models import Decision
 
 from ..utils.logging import get_logger
 from ..utils.progress_tracker import get_progress_tracker
@@ -1155,7 +1158,6 @@ class ContextRetriever:
         for entity in entities:
             entity_name = str(entity.get("name", entity.get("id", "")))
             entity_name_lower = entity_name.lower()
-            entity_type = str(entity.get("type", "")).lower()
             
             # Word overlap score
             entity_words = set(entity_name_lower.split())
@@ -2800,8 +2802,6 @@ Answer:"""
         Returns:
             List of similar decisions
         """
-        from .decision_models import Decision
-        
         if not self.knowledge_graph:
             return []
         

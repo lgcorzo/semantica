@@ -36,7 +36,6 @@ try:
     from google_auth_oauthlib.flow import InstalledAppFlow
     from google.auth.transport.requests import Request
     from googleapiclient.discovery import build
-    from googleapiclient.errors import HttpError
     from googleapiclient.http import MediaIoBaseDownload
     import io
 except (ImportError, OSError):
@@ -44,10 +43,6 @@ except (ImportError, OSError):
     InstalledAppFlow = None
     Request = None
     build = None
-
-    class HttpError(Exception):  # type: ignore[no-redef]
-        """Fallback exception when googleapiclient is not installed."""
-
     MediaIoBaseDownload = None
     io = None
 
