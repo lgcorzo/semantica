@@ -65,6 +65,16 @@ id = "GHSA-vx6w-vv9f-6gvg"
 ignoreUntil = 2027-01-21
 reason = "pillow 12.3.0, fixed in 13.0.0; blocked by docling's pillow<13 cap. See #2067."
 
+[[IgnoredVulns]]
+id = "GHSA-5x8w-8jj5-q52h"
+ignoreUntil = 2027-01-21
+reason = "pillow 12.3.0, fixed in 13.0.0; blocked by docling's pillow<13 cap. See #2067."
+
+[[IgnoredVulns]]
+id = "GHSA-654x-cwwv-5j9c"
+ignoreUntil = 2027-01-21
+reason = "pillow 12.3.0, fixed in 13.0.0; blocked by docling's pillow<13 cap. See #2067."
+
 # ---------------------------------------------------------------------------
 # chromadb / json-repair (previously pulled in transitively by an opt-in
 # `crewai` extra) are no longer resolvable at all: the `crewai` extra was
