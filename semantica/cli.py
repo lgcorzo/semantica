@@ -258,6 +258,8 @@ def _build_runtime_config(
 def _setup_cli_logging(
     logging_config: Dict[str, Any],
     *,
+    quiet: bool = False,
+    json_output: bool = False,
     allow_file_fallback: bool = True,
 ) -> None:
     """Initialize logging without making the default log file a startup blocker.
@@ -276,6 +278,7 @@ def _setup_cli_logging(
 
         fallback_config = {**logging_config, "file": None}
         setup_logging(config=fallback_config)
+    del quiet, json_output
 
 
 def _get_framework(cli_ctx: CLIContext) -> "Semantica":
