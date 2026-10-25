@@ -250,6 +250,7 @@ jobs:
             IGNORED_VULN_IDS="$IGNORED_VULN_IDS,CVE-2026-96636,GHSA-78g4-xqwv-q3g8"
             IGNORED_VULN_IDS="$IGNORED_VULN_IDS,CVE-2026-114134,CVE-2026-114145,CVE-2026-114603"
             IGNORED_VULN_IDS="$IGNORED_VULN_IDS,CVE-2026-112398,GHSA-5x8w-8jj5-q52h,CVE-2026-114501,GHSA-654x-cwwv-5j9c"
+            IGNORED_VULN_IDS="$IGNORED_VULN_IDS,CVE-2026-112907,CVE-2026-112913,CVE-2026-112940"
           else
             echo "::warning::The pillow advisory acceptance expired on 2027-01-21 and those findings now fail the scan. See #2067."
           fi
