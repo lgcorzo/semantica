@@ -94,7 +94,9 @@ test("visible legend follows loaded data, reloads, focused views, and distance m
   await assertLegendMatchesGraph(page);
 
   await page.getByPlaceholder("Search command, node, or concept").fill("Alice");
-  await page.getByRole("option").filter({ hasText: "Alice" }).click();
+  const aliceOption = page.getByRole("option").filter({ hasText: "Alice" });
+  await aliceOption.waitFor({ state: "visible", timeout: 20000 });
+  await aliceOption.click();
   const heatmap = page.getByRole("button", { name: "Heatmap", exact: true });
   await heatmap.click();
   await legend.waitFor({ state: "hidden" });
