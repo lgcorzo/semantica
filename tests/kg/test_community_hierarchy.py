@@ -900,11 +900,14 @@ class TestCommunityHierarchyEdgeCases:
             builder.build(adj)
 
     def test_builder_fallback_flag_resets_on_subsequent_builds(self):
+        from unittest.mock import patch
+
         builder = CommunityHierarchyBuilder(algorithm="louvain", seed=42)
 
         g_fail = nx.Graph()
         g_fail.add_edge("a", "b", weight=0.0)
-        h1 = builder.build(g_fail)
+        with patch("semantica.kg.community_hierarchy.nx_comm.louvain_communities", side_effect=RuntimeError("forced failure")):
+            h1 = builder.build(g_fail)
         assert h1.metadata.get("fallback") is True
 
         g_ok = nx.karate_club_graph()
