@@ -451,8 +451,8 @@ class SQLiteStorage(ProvenanceStorage):
             )
             try:
                 conn.execute("PRAGMA journal_mode=DELETE")
-            except Exception:
-                pass
+            except Exception as fallback_err:
+                self.logger.debug(f"DELETE journal_mode fallback also failed: {fallback_err}")
 
         try:
             conn.execute("PRAGMA busy_timeout=5000")
@@ -483,8 +483,8 @@ class SQLiteStorage(ProvenanceStorage):
         except Exception:
             try:
                 conn.rollback()
-            except Exception:
-                pass
+            except Exception as rb_err:
+                self.logger.debug(f"Rollback failed during transaction cleanup: {rb_err}")
             raise
         finally:
             conn.close()
@@ -511,8 +511,8 @@ class SQLiteStorage(ProvenanceStorage):
             try:
                 conn.execute(f"ROLLBACK TO {sp_name}")
                 conn.execute(f"RELEASE {sp_name}")
-            except Exception:
-                pass
+            except Exception as sp_err:
+                self.logger.debug(f"Savepoint rollback failed: {sp_err}")
             raise
 
     @contextmanager
