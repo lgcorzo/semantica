@@ -37,7 +37,8 @@ class TestLLMExtractionFixes(unittest.TestCase):
         try:
             extract_entities_llm("test text", provider="openai")
             self.fail("ProcessingError not raised")
-        except ProcessingError as e:
+        except ProcessingError:
+            # Expected ProcessingError
             pass
 
     @patch('semantica.semantic_extract.methods.create_provider')

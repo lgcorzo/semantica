@@ -56,6 +56,7 @@ class TestParseComprehensive(unittest.TestCase):
                 p1.start()
                 self.patchers.append(p1)
             except AttributeError:
+                # Module does not have get_logger function
                 pass
 
             # Patch get_progress_tracker
@@ -68,6 +69,7 @@ class TestParseComprehensive(unittest.TestCase):
                     p2.start()
                     self.patchers.append(p2)
             except ImportError:
+                # Optional module could not be imported
                 pass
 
     def tearDown(self):

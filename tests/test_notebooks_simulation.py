@@ -161,6 +161,7 @@ class TestNotebooks(unittest.TestCase):
                 vector_exporter.export(embeddings, "exports/output_vectors.npy", format="numpy")
                 self.assertTrue(os.path.exists("exports/output_vectors.npz")) # Note: .npy usually becomes .npz if compressed
             except ImportError:
+                # numpy dependency not installed
                 pass
         except Exception as e:
             print(f"Vector export failed: {e}")
