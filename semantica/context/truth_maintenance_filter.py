@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Sequence
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, List, Tuple
+from typing import Any, List, Tuple
 
 from semantica.reasoning import TruthMaintenanceSession, TruthMaintenanceSnapshot
 from semantica.reasoning._truth_maintenance_validation import validate_fact_text
@@ -203,7 +203,7 @@ class TruthMaintenanceContextFilter:
 
     def _candidate_is_grounded(
         self,
-        candidate: RetrievedContext,
+        candidate: Any,
         *,
         snapshot: TruthMaintenanceSnapshot,
         active_ids: frozenset,
