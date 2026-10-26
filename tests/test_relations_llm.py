@@ -47,6 +47,7 @@ class TestLLMRelationExtraction(unittest.TestCase):
             if hasattr(self, "_orig_create_provider"):
                 methods.create_provider = self._orig_create_provider
         except Exception:
+            # Cleanup error if patching failed or module imported cleanly without patch
             pass
 
     def test_typed_relations_parsed(self):

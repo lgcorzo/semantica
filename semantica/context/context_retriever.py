@@ -78,7 +78,7 @@ License: MIT
 
 from datetime import datetime, timezone
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple, Union
 
 from ..utils.logging import get_logger
 from ..utils.progress_tracker import get_progress_tracker
@@ -89,8 +89,10 @@ from ..kg.centrality_calculator import CentralityCalculator
 from ..kg.community_detector import CommunityDetector
 from ..kg.similarity_calculator import SimilarityCalculator
 from ..utils.exceptions import ValidationError
-from .truth_maintenance_filter import TruthMaintenanceContextFilter
 from .tiers import TierCalculator, TrustTier
+
+if TYPE_CHECKING:
+    from .truth_maintenance_filter import TruthMaintenanceContextFilter
 try:
     from ..kg.temporal_query import TemporalGraphQuery as _TemporalGraphQuery
     from ..kg.temporal_model import parse_temporal_value as _parse_temporal_value
@@ -226,7 +228,7 @@ class ContextRetriever:
         use_graph_expansion: Optional[bool] = None,
         min_relevance_score: float = 0.0,
         mode: str = "local",
-        truth_filter: Optional[TruthMaintenanceContextFilter] = None,
+        truth_filter: Optional["TruthMaintenanceContextFilter"] = None,
         min_trust_tier: Optional[TrustTier] = None,
         **options,
     ) -> List[RetrievedContext]:
@@ -337,14 +339,14 @@ class ContextRetriever:
         )
 
         try:
-            if truth_filter is not None and not isinstance(
-                truth_filter, TruthMaintenanceContextFilter
-            ):
-                raise ValidationError(
-                    "truth_filter must be a TruthMaintenanceContextFilter "
-                    "instance",
-                    validation_context={"method": "ContextRetriever.retrieve"},
-                )
+            if truth_filter is not None:
+                from .truth_maintenance_filter import TruthMaintenanceContextFilter
+                if not isinstance(truth_filter, TruthMaintenanceContextFilter):
+                    raise ValidationError(
+                        "truth_filter must be a TruthMaintenanceContextFilter "
+                        "instance",
+                        validation_context={"method": "ContextRetriever.retrieve"},
+                    )
             snapshot = (
                 truth_filter.snapshot() if truth_filter is not None else None
             )
