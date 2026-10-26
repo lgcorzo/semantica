@@ -20,8 +20,6 @@ from semantica.reasoning import TruthMaintenanceSession, TruthMaintenanceSnapsho
 from semantica.reasoning._truth_maintenance_validation import validate_fact_text
 from semantica.utils.exceptions import ProcessingError, ValidationError
 
-if TYPE_CHECKING:  # pragma: no cover - import kept out of runtime cycle
-    from .context_retriever import RetrievedContext
 
 _ANNOTATION_SCHEMA_VERSION = 1
 _ANNOTATION_KEYS = frozenset(
@@ -154,7 +152,7 @@ class TruthMaintenanceContextFilter:
         candidates: Iterable[Any],
         *,
         snapshot: TruthMaintenanceSnapshot,
-    ) -> List[RetrievedContext]:
+    ) -> List[Any]:
         """Return the grounded subset of ``candidates``.
 
         Each candidate must be a :class:`RetrievedContext`. Its root
@@ -165,14 +163,15 @@ class TruthMaintenanceContextFilter:
         candidate without failing the call.
         """
 
-        from .context_retriever import RetrievedContext
-
         active_ids = frozenset(
             support.support_id for support in snapshot.active_supports
         )
-        results: List[RetrievedContext] = []
+        results: List[Any] = []
         for candidate in candidates:
-            if not isinstance(candidate, RetrievedContext):
+            if not any(
+                cls.__name__ == "RetrievedContext"
+                for cls in type(candidate).__mro__
+            ):
                 raise ValidationError(
                     "candidates must be RetrievedContext instances",
                     validation_context={"candidate_type": type(candidate).__name__},
