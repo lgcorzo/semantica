@@ -70,8 +70,6 @@ class TestSemanticaFeatures(unittest.TestCase):
         except Exception as e:
             print(f"Switch failed: {e}")
             # Do not fail test if model download fails (e.g. network issue), but log it
-            # But for this task we should probably expect it to work if dependencies are there
-            pass
 
     def test_04_vector_store_basic(self):
         """Test VectorStore storage and search"""

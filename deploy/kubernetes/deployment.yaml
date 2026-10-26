@@ -40,9 +40,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: knowledge-explorer-config
-            - secretRef:
-                name: knowledge-explorer-secrets
-                optional: true
           livenessProbe:
             httpGet:
               path: /api/health
@@ -79,6 +76,13 @@ spec:
           volumeMounts:
             - name: tmp
               mountPath: /tmp
+            - name: secrets
+              mountPath: /etc/secrets
+              readOnly: true
       volumes:
         - name: tmp
           emptyDir: {}
+        - name: secrets
+          secret:
+            secretName: knowledge-explorer-secrets
+            optional: true

@@ -500,8 +500,8 @@ class TripletExtractor:
                                     valid_types=triplet_types,
                                     item_text=t.predicate # For triplets, predicate is the key text
                                 )
-                        except ImportError:
-                            pass
+                        except ImportError as exc:
+                            self.logger.debug("calculate_weighted_confidence unavailable: %s", exc)
 
                     # Filter by confidence
                     min_conf = options.get("min_confidence", self.min_confidence)

@@ -456,5 +456,6 @@ class JavaScriptRenderer:
         if hasattr(self, "driver") and self.driver:
             try:
                 self.driver.quit()
-            except Exception:
-                pass
+            except Exception as exc:
+                if hasattr(self, "logger") and self.logger:
+                    self.logger.debug("Error during WebDriver quit: %s", exc)

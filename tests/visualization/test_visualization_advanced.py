@@ -61,8 +61,8 @@ class TestVisualizationAdvanced(unittest.TestCase):
             # Assuming it creates a figure or raises error if not implemented
             try:
                 viz.visualize_community_structure(graph, communities)
-            except Exception:
-                pass
+            except Exception as exc:
+                self.assertIsNotNone(exc)
             # Just ensuring it runs without crashing due to missing deps (since we mocked them)
 
     # --- EmbeddingVisualizer Tests ---
