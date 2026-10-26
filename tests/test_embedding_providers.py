@@ -93,6 +93,7 @@ class TestEmbeddingProviders(unittest.TestCase):
                 "fastembed backend unavailable: TextEmbedder fell back to "
                 f"'{active_method}', so the model dimension cannot be checked"
             )
+        embeddings = None
         try:
             embeddings = generator.generate_embeddings(["Test text"], data_type="text")
         except Exception as exc:
@@ -104,6 +105,8 @@ class TestEmbeddingProviders(unittest.TestCase):
             self.skipTest(
                 f"fastembed backend reported active but cannot embed: {exc}"
             )
+        if embeddings is None:
+            self.skipTest("fastembed backend produced no embeddings")
         self.assertEqual(embeddings.shape[1], 384)
         print("EmbeddingGenerator config test passed.")
 

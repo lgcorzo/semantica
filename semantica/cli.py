@@ -670,6 +670,7 @@ def main(
             store_backend=store_backend,
             vector_store_backend=vector_store_backend,
         )
+        _ = profile
         if ctx.invoked_subcommand is None:
             _show_startup(ctx.obj)
     except click.ClickException:
