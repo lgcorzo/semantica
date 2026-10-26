@@ -9108,7 +9108,6 @@ source = { editable = "." }
 dependencies = [
     { name = "chardet" },
     { name = "click" },
-    { name = "filelock" },
     { name = "grpcio" },
     { name = "httpx" },
     { name = "loguru" },
@@ -9548,7 +9547,6 @@ requires-dist = [
     { name = "falkordb", marker = "extra == 'graph-falkordb'", specifier = ">=1.0.0" },
     { name = "fastapi", marker = "extra == 'explorer'", specifier = ">=0.109.2" },
     { name = "fastembed", marker = "extra == 'embeddings-local'", specifier = ">=0.2.0" },
-    { name = "filelock", specifier = ">=3.17.0" },
     { name = "gensim", marker = "extra == 'graph-embeddings'", specifier = ">=4.4.0" },
     { name = "gensim", marker = "extra == 'split-topic'", specifier = ">=4.4.0" },
     { name = "gitpython", marker = "extra == 'ingest-git'", specifier = ">=3.1.58" },

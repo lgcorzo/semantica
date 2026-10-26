@@ -64,7 +64,6 @@ dependencies = [
   "chardet>=7.4.3",
   "protobuf>=5.29.1,<8.0",
   "grpcio>=1.81.1",
-  "filelock>=3.17.0",
   "pillow>=13.0.0; python_version >= '3.11'",
   "pillow>=11.1.0; python_version < '3.11'",
   "pydantic>=2.13.4",
