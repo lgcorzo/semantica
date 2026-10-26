@@ -7,6 +7,7 @@ try:
 
     load_dotenv()
 except Exception:
+    # python-dotenv is optional or env file unavailable
     pass
 
 pytest.importorskip("groq")

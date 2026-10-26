@@ -540,6 +540,7 @@ class TestJenaStoreEndpointDerivation(unittest.TestCase):
             try:
                 JenaStore(endpoint=endpoint)
             except Exception:
+            # Endpoint initialization failed during test teardown/capture
                 pass
             # Extract call kwargs
             if MockUS.call_args is not None:

@@ -39,6 +39,7 @@ except ImportError:
 
         psycopg_available = True
     except ImportError:
+    # Neither psycopg nor psycopg2 is installed
         pass
 
 try:
@@ -84,6 +85,7 @@ def pg_available() -> bool:
             conn.close()
             return True
     except Exception:
+        # Unable to connect to PostgreSQL database
         return False
     return False
 

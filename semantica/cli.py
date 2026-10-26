@@ -658,6 +658,7 @@ def main(
         if no_color:
             global console  # noqa: PLW0603
             console = Console(no_color=True)
+            _ = console
         ctx.obj = CLIContext(
             config_path=_resolve_config_path(config_path),
             config=config,
@@ -953,7 +954,8 @@ def doctor(cli_ctx: CLIContext, local_json: bool, deep_embeddings: bool) -> None
             cfg = cli_ctx.config.to_dict()
             backend = cli_ctx.vector_store_backend or cfg.get("vector_store", {}).get("backend", "faiss")
             if backend == "faiss":
-                import faiss  # noqa: F401
+                import faiss
+                _ = faiss
             return f"{backend} importable"
         checks.append(_check("Vector store", _vector, hint="pip install semantica[vectorstore-…]"))
 
@@ -5399,17 +5401,17 @@ def store_migrate(cli_ctx: CLIContext, from_backend: str, to_backend: str,
         if dest_index_path and Path(dest_index_path).exists():
             dest._backend_store.load_index(dest_index_path)
 
-        migrated = 0
+        migrated_count = 0
         vectors_batch: List[Any] = []
         metadata_batch: List[Dict[str, Any]] = []
         ids_batch: List[str] = []
 
         def _flush() -> None:
-            nonlocal migrated
+            nonlocal migrated_count
             if not vectors_batch:
                 return
             dest.store_vectors(list(vectors_batch), list(metadata_batch), ids=list(ids_batch))
-            migrated += len(vectors_batch)
+            migrated_count += len(vectors_batch)
             vectors_batch.clear()
             metadata_batch.clear()
             ids_batch.clear()
@@ -5425,14 +5427,14 @@ def store_migrate(cli_ctx: CLIContext, from_backend: str, to_backend: str,
                 _flush()
         _flush()
 
-        if dest_index_path and migrated:
+        if dest_index_path and migrated_count:
             dest._backend_store.save_index(dest_index_path)
 
-        result = {"from": from_backend, "to": to_backend, "migrated": migrated}
+        result = {"from": from_backend, "to": to_backend, "migrated": migrated_count}
         if _is_json(cli_ctx, local_json):
             _jecho(result)
         else:
-            _ok(cli_ctx, f"Migrated {migrated} vectors from {from_backend} to {to_backend}")
+            _ok(cli_ctx, f"Migrated {migrated_count} vectors from {from_backend} to {to_backend}")
 
     _run_with_error_handling(_action)
 
