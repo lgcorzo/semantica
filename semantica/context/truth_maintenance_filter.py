@@ -16,6 +16,9 @@ from collections.abc import Iterable, Sequence
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any, List, Tuple
 
+if TYPE_CHECKING:
+    from semantica.context.context_retriever import RetrievedContext
+
 from semantica.reasoning import TruthMaintenanceSession, TruthMaintenanceSnapshot
 from semantica.reasoning._truth_maintenance_validation import validate_fact_text
 from semantica.utils.exceptions import ProcessingError, ValidationError
