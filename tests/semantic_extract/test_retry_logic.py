@@ -148,6 +148,7 @@ class TestRetryLogic(unittest.TestCase):
             try:
                 provider.generate_typed("prompt", EntitiesResponse, max_retries=2)
             except Exception:
+                # Expected exception when mock provider fails; testing retry count.
                 pass
             
             # Should try manual generation exactly 2 times
@@ -170,6 +171,7 @@ class TestRetryLogic(unittest.TestCase):
             try:
                 provider.generate_typed("prompt", EntitiesResponse, max_retries=0)
             except Exception:
+                # Expected exception when mock provider fails with 0 retries.
                 pass
             
             # Should NOT try manual generation loop (range(0) is empty)

@@ -221,11 +221,12 @@ class TestVerboseModeAssignment(unittest.TestCase):
 
         with patch("semantica.semantic_extract.providers.instructor", mock_instructor):
             try:
-                result = provider.generate_typed("prompt", Schema)
+                _ = provider.generate_typed("prompt", Schema)
             except NameError as e:
                 self.fail(f"NameError for verbose_mode: {e}")
             except Exception:
-                pass  # other errors are OK — we only care NameError is gone
+                # Other errors are OK — we only care NameError is gone.
+                pass
 
     def test_generate_typed_verbose_true_logs(self):
         """When verbose=True, generate_typed must log the confirmation line."""
@@ -247,6 +248,7 @@ class TestVerboseModeAssignment(unittest.TestCase):
                 try:
                     provider.generate_typed("prompt", Schema, verbose=True)
                 except Exception:
+                    # Ignoring generation failure; testing logging behavior.
                     pass
 
         # verbose_mode=True should trigger the debug log line
@@ -275,6 +277,7 @@ class TestVerboseModeAssignment(unittest.TestCase):
                 try:
                     provider.generate_typed("prompt", Schema)
                 except Exception:
+                    # Ignoring generation failure; testing logging behavior.
                     pass
 
         debug_calls = [str(c) for c in mock_logger.debug.call_args_list]
@@ -304,6 +307,7 @@ class TestVerboseModeAssignment(unittest.TestCase):
                 try:
                     provider.generate_typed("prompt", Schema)
                 except Exception:
+                    # Ignoring generation failure; testing logging behavior.
                     pass
 
         self.assertTrue(
