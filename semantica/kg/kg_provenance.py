@@ -173,7 +173,7 @@ class GraphBuilderWithProvenance:
                                 "timestamp": time.time()
                             }
                         )
-            except Exception as e:
+            except Exception:
                 # Don't fail the build if provenance tracking fails
                 pass
 
@@ -248,7 +248,7 @@ class GraphBuilderWithProvenance:
                                 "timestamp": time.time()
                             }
                         )
-            except Exception as e:
+            except Exception:
                 # Don't fail the build if provenance tracking fails
                 pass
         

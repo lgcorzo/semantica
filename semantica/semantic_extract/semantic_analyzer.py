@@ -591,7 +591,7 @@ class SemanticClusterer:
                 assigned.add(i)
 
                 # Find similar texts
-                remaining_texts = len(processed_texts) - (i + 1)
+                _ = len(processed_texts) - (i + 1)
                 for j, text2 in enumerate(processed_texts[i + 1 :], start=i + 1):
                     if j in assigned:
                         continue

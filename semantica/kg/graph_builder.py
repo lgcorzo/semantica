@@ -309,7 +309,6 @@ class GraphBuilder:
                 tgt = item["target"]
                 item["target"] = getattr(tgt, "id", getattr(tgt, "text", str(tgt)))
             
-            processed = False
             found_something = False
             
             if "entities" in item:
@@ -321,7 +320,6 @@ class GraphBuilder:
                     else:
                         self._process_item(entities_list, all_entities, all_relationships, **options)
                     found_something = True
-                    processed = True
             
             if "relationships" in item:
                 rels_list = item["relationships"]
@@ -332,7 +330,6 @@ class GraphBuilder:
                     else:
                         self._process_item(rels_list, all_entities, all_relationships, **options)
                     found_something = True
-                    processed = True
             
             if not found_something:
                 if "source" in item and "target" in item:
@@ -1050,7 +1047,7 @@ class GraphBuilder:
                         "type": rel.get("type", "RELATED_TO"),
                         "properties": rel.get("metadata", {})
                     })
-                edge_prep_time = time.time() - edge_prep_start
+                _ = time.time() - edge_prep_start
                 
                 edge_start = time.time()
                 edge_count = self.graph_store.add_edges(formatted_edges)

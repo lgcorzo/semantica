@@ -787,7 +787,7 @@ def split_llm(
 
             # Parse response to get split indices
             try:
-                split_indices = [
+                _ = [
                     int(x.strip()) for x in response.split(",") if x.strip().isdigit()
                 ]
                 # Use split indices to create refined chunks
@@ -825,7 +825,7 @@ def split_huggingface(
         return split_by_tokens(text, chunk_size=chunk_size, **kwargs)
 
     try:
-        tokenizer = AutoTokenizer.from_pretrained(model)
+        _ = AutoTokenizer.from_pretrained(model)
         return split_by_tokens(text, chunk_size=chunk_size, tokenizer=model, **kwargs)
     except Exception as e:
         logger.warning(

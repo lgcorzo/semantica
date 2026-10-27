@@ -412,10 +412,6 @@ class TripletExtractor:
             # Try each method in order (fallback chain)
             all_triplets = []
             total_methods = len(methods)
-            if total_methods <= 10:
-                method_update_interval = 1  # Update every method for small datasets
-            else:
-                method_update_interval = max(1, min(5, total_methods // 20))
             
             # Initial progress update for methods
             remaining_methods = total_methods

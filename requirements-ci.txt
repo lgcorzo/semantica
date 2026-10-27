@@ -1579,6 +1579,7 @@ filelock==3.32.7 \
     --hash=sha256:65ff0d0190ea42038b32bda4b77834fb05be2cad4c5b9b01aa4dfb3614536e52
     # via
     #   --override (workspace)
+    #   semantica (pyproject.toml)
     #   huggingface-hub
     #   litellm
     #   python-discovery

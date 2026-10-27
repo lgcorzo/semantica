@@ -207,7 +207,7 @@ class NERExtractor:
                 self.logger.warning(
                     f"spaCy model {self.model_name} not found. ML method will fallback."
                 )
-            except Exception as exc:
+            except Exception:
                 self._ml_runtime_usable = False
                 self.logger.warning(
                     "spaCy model %s failed to initialize and will be disabled for this extractor instance. ML method will fallback.",

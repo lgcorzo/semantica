@@ -302,7 +302,7 @@ class BlazegraphStore:
 
         # Convert triplets to RDF format
         format = options.get("format", "turtle")
-        rdf_data = self._triplets_to_rdf(triplets, format)
+        _ = self._triplets_to_rdf(triplets, format)
 
         # Upload endpoint
         upload_endpoint = urljoin(

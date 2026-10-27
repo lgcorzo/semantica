@@ -398,7 +398,7 @@ class ProvenanceTracker:
         
         # Return the most recent provenance info (the chunk itself)
         # wrapped in a structure that matches notebook expectation
-        latest_prov = lineage_list[-1] # List is parent -> child (wait, let me check get_chunk_lineage implementation)
+        _ = lineage_list[-1] # List is parent -> child (wait, let me check get_chunk_lineage implementation)
         # get_chunk_lineage inserts at 0, so [grandparent, parent, child]. 
         # But wait, logic: lineage.insert(0, provenance) while walking up parents.
         # So index 0 is oldest ancestor? 

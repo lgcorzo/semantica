@@ -862,7 +862,7 @@ class RepoIngestor:
             clone_options = self._filter_clone_options(options)
 
             try:
-                parsed = git.Repo.clone_from(
+                _ = git.Repo.clone_from(
                     clone_url, self._get_temp_dir(), **clone_options
                 )
             except Exception as e:

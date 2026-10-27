@@ -66,6 +66,7 @@ dependencies = [
   "grpcio>=1.81.1",
   "pillow>=13.0.0; python_version >= '3.11'",
   "pillow>=11.1.0; python_version < '3.11'",
+  "filelock>=3.18.0",
   "pydantic>=2.13.4",
   "click>=8.4.2",
   "rich>=12.5.0",

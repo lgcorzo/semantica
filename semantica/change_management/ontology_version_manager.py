@@ -187,7 +187,7 @@ class VersionManager:
             Element IRI (version-less)
         """
         # Use base URI without version for elements
-        base_uri = self.namespace_manager.get_base_uri()
+        _ = self.namespace_manager.get_base_uri()
 
         if element_type == "class":
             return self.namespace_manager.generate_class_iri(element_name)

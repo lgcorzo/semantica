@@ -445,7 +445,7 @@ class MergeStrategyManager:
                 
                 # Update progress if tracking_id is provided
                 if tracking_id and (prop_idx % 10 == 0 or prop_idx == total_props - 1):
-                    processed_entities = ent_idx
+                    _ = ent_idx
                     # Calculate overall progress across all entities and their properties
                     # This is an approximation for smoother progress
                     progress_msg = f"Merging properties from entity {ent_idx+1}/{len(entities)}: {prop_name}"

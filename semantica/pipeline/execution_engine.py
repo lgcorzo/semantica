@@ -707,7 +707,7 @@ class ExecutionEngine:
             self.progress_tracker.update_tracking(
                 tracking_id, message="Building dependency graph..."
             )
-            step_map = {step.name: step for step in steps}
+            _ = {step.name: step for step in steps}
             in_degree = {step.name: len(step.dependencies) for step in steps}
 
             # Find steps with no dependencies

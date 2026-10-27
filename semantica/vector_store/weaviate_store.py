@@ -70,7 +70,7 @@ class WeaviateClient:
 
         try:
             # Convert schema to Weaviate format
-            class_obj = self.client.collections.create(
+            _ = self.client.collections.create(
                 name=class_name,
                 vectorizer_config=weaviate.classes.config.Configure.vectorizer.none(),
                 **schema,

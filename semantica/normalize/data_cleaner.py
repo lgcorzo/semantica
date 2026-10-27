@@ -195,7 +195,7 @@ class DataCleaner:
 
             self.progress_tracker.stop_tracking(tracking_id, status="completed")
             return cleaned
-        except Exception as e:
+        except Exception:
             self.progress_tracker.stop_tracking(tracking_id, status="failed")
             raise
 
@@ -694,7 +694,7 @@ class DataValidator:
         elif isinstance(expected_types, str):
             expected_types = [expected_types]
 
-        actual_type = type(data)
+        _ = type(data)
 
         # Map string type names to actual types
         type_map = {

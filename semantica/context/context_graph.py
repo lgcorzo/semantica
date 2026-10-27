@@ -5574,7 +5574,7 @@ class ContextGraph:
                     if isinstance(item, dict)
                 )
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Structural similarity calculation failed")
         
         return 0.0

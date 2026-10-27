@@ -46,7 +46,7 @@ class OntologyEngine:
             ontology = self.generator.generate_ontology(data, **options)
             self.progress.update_tracking(tracking_id, message="Ontology generated")
             return ontology
-        except Exception as e:
+        except Exception:
             self.progress.update_tracking(tracking_id, message="Generation failed")
             raise
 

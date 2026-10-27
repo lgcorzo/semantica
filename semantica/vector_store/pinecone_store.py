@@ -222,7 +222,7 @@ class PineconeIndex:
             raise ProcessingError("Pinecone not available")
 
         try:
-            response = self.index.delete(ids=vector_ids, namespace=namespace, **options)
+            _ = self.index.delete(ids=vector_ids, namespace=namespace, **options)
             return {"deleted": True}
         except Exception as e:
             raise ProcessingError(f"Failed to delete vectors: {str(e)}")

@@ -587,7 +587,6 @@ class CommunityDetector:
 
             for node in nodes:
                 # Find best community for this node
-                best_community = node_communities[node]
                 best_modularity = self._calculate_modularity(
                     adjacency, node_communities
                 )
@@ -605,7 +604,6 @@ class CommunityDetector:
 
                         if new_modularity > best_modularity:
                             best_modularity = new_modularity
-                            best_community = neighbor_comm
                             changed = True
                         else:
                             node_communities[node] = old_comm

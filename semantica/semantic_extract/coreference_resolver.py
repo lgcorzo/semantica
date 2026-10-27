@@ -201,7 +201,7 @@ class CoreferenceResolver:
                 total=total_steps,
                 message=f"Resolving pronouns... ({current_step}/{total_steps}, {len(mentions)} mentions, remaining: {remaining_steps} steps)"
             )
-            pronoun_resolutions = self.pronoun_resolver.resolve_pronouns(
+            _ = self.pronoun_resolver.resolve_pronouns(
                 text, mentions, **options
             )
 
@@ -214,7 +214,7 @@ class CoreferenceResolver:
                 total=total_steps,
                 message=f"Detecting entity coreferences... ({current_step}/{total_steps}, remaining: {remaining_steps} steps)"
             )
-            entity_corefs = self.entity_detector.detect_entity_coreferences(
+            _ = self.entity_detector.detect_entity_coreferences(
                 text, mentions, **options
             )
 
@@ -375,16 +375,9 @@ class CoreferenceResolver:
             "their": r"\btheir\b",
         }
 
-        total_patterns = len(pronoun_patterns)
-        if total_patterns <= 10:
-            pattern_update_interval = 1  # Update every pattern for small datasets
-        else:
-            pattern_update_interval = max(1, min(5, total_patterns // 20))
-
         for pattern_idx, (pronoun, pattern) in enumerate(pronoun_patterns.items(), 1):
             # Count matches first
             matches = list(re.finditer(pattern, text, re.IGNORECASE))
-            total_matches = len(matches)
             
             for match in matches:
                 mentions.append(

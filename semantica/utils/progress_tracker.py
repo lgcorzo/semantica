@@ -690,7 +690,7 @@ class JupyterProgressDisplay(ProgressDisplay):
             else:
                 elapsed = "-"
 
-            file_name = Path(item.file).name if item.file else "-"
+            _ = Path(item.file).name if item.file else "-"
             
             # Extraction counts
             extracted_str = "-"

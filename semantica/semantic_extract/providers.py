@@ -345,7 +345,7 @@ class BaseProvider:
         if instructor:
             try:
                 client = None
-                mode = instructor.Mode.TOOLS  # Default mode
+                _ = instructor.Mode.TOOLS  # Default mode
 
                 if provider_name == "OpenAIProvider" and self.client:
                     custom_base_url = getattr(self, "base_url", None)

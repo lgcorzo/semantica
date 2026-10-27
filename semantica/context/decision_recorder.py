@@ -235,7 +235,7 @@ class DecisionRecorder:
             self.logger.info(f"Recorded decision: {decision.decision_id} | Actor: {decision.decision_maker} | Timestamp: {decision.timestamp} | Outcome: {decision.outcome} | Category: {decision.category}")
             return decision.decision_id
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to record decision")
             raise
     
@@ -269,7 +269,7 @@ class DecisionRecorder:
             
             self.logger.info(f"Linked decision {decision_id} to {len(entities)} entities")
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to link entities")
             raise
     
@@ -350,7 +350,7 @@ class DecisionRecorder:
             self.logger.info(f"Applied {len(applied)} policies to decision {decision_id}")
             return applied
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to apply policies")
             raise
     
@@ -415,7 +415,7 @@ class DecisionRecorder:
             self.logger.info(f"Recorded exception: {exception.exception_id}")
             return exception.exception_id
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to record exception")
             raise
     
@@ -455,7 +455,7 @@ class DecisionRecorder:
             
             self.logger.info(f"Captured cross-system context for decision {decision_id}")
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to capture cross-system context")
             raise
     
@@ -505,7 +505,7 @@ class DecisionRecorder:
             
             self.logger.info(f"Recorded approval chain with {len(approvers)} approvers")
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to record approval chain")
             raise
     
@@ -548,7 +548,7 @@ class DecisionRecorder:
             
             self.logger.info(f"Linked {len(precedent_ids)} precedents to decision {decision_id}")
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to link precedents")
             raise
     
@@ -726,5 +726,5 @@ class DecisionRecorder:
                 ended_at=decision.timestamp
             )
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to track provenance")
