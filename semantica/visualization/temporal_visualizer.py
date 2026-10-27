@@ -649,10 +649,10 @@ class TemporalVisualizer:
             raise ProcessingError("No temporal patterns found")
 
         # Extract pattern data
-        pattern_types = [p.get("pattern_type", "Unknown") for p in patterns]
-        start_times = [p.get("start_time", "") for p in patterns]
-        end_times = [p.get("end_time", "") for p in patterns]
-        entities = [p.get("entities", []) for p in patterns]
+        _ = [p.get("pattern_type", "Unknown") for p in patterns]
+        _ = [p.get("start_time", "") for p in patterns]
+        _ = [p.get("end_time", "") for p in patterns]
+        _ = [p.get("entities", []) for p in patterns]
 
         # Create timeline visualization
         fig = go.Figure()
@@ -816,7 +816,7 @@ class TemporalVisualizer:
         # Create timeline
         version_names = [v.get("version", f"v{i}") for i, v in enumerate(versions)]
         version_dates = [v.get("date", v.get("timestamp", "")) for v in versions]
-        version_changes = [v.get("changes", v.get("description", "")) for v in versions]
+        _ = [v.get("changes", v.get("description", "")) for v in versions]
 
         fig = go.Figure()
 

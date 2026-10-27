@@ -1157,7 +1157,7 @@ class ContextRetriever:
         for entity in entities:
             entity_name = str(entity.get("name", entity.get("id", "")))
             entity_name_lower = entity_name.lower()
-            entity_type = str(entity.get("type", "")).lower()
+            _ = str(entity.get("type", "")).lower()
             
             # Word overlap score
             entity_words = set(entity_name_lower.split())

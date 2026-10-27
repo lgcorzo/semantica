@@ -78,7 +78,7 @@ def create_decision_constraints(graph_store: GraphStore) -> None:
             "CREATE CONSTRAINT policy_identity_unique IF NOT EXISTS "
             "FOR (p:Policy) REQUIRE (p.policy_id, p.version) IS UNIQUE"
         )
-    except Exception as e:
+    except Exception:
         get_logger(__name__).warning(
             "Composite policy constraint not supported; falling back to legacy "
             "policy_id uniqueness (policy versioning may be limited)"
@@ -261,7 +261,7 @@ def verify_schema(graph_store: GraphStore) -> bool:
             try:
                 result = graph_store.execute_query(f"MATCH (n:{label}) RETURN count(n) as count LIMIT 1")
                 # Query succeeded, label exists
-            except Exception as e:
+            except Exception:
                 logger.warning(f"Missing node label: {label}")
                 return False
         

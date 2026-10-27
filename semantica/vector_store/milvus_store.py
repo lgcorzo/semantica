@@ -632,7 +632,7 @@ class MilvusStore:
             self.progress_tracker.update_tracking(
                 tracking_id, message="Inserting vectors into collection..."
             )
-            result = self.collection.insert(data, **options)
+            _ = self.collection.insert(data, **options)
 
             self.progress_tracker.stop_tracking(
                 tracking_id,

@@ -394,7 +394,7 @@ class DoclingParser:
             for table in doc.tables:
                 try:
                     # Get table data
-                    table_data_obj = table.data
+                    _ = table.data
                     
                     # Extract rows and columns
                     rows = []
@@ -588,7 +588,7 @@ class DoclingParser:
         """Extract a single table item to dict format."""
         try:
             # Get table data
-            table_data_obj = table_item.data
+            _ = table_item.data
             
             # Extract rows
             rows = []

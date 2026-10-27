@@ -989,7 +989,7 @@ def extract_entities_regex(
 def extract_entities_rules(text: str, **kwargs) -> List[Entity]:
     """Rule-based entity extraction using linguistic rules."""
     entities = []
-    words = text.split()
+    _ = text.split()
 
     # Rule: Capitalized words at sentence start are likely entities
     sentences = re.split(r"[.!?]+", text)
@@ -2274,7 +2274,7 @@ Entities found in text: {entities_str}"""
                     extraction_method="llm_typed",
                     extract_temporal_bounds=extract_temporal_bounds,
                 )
-            except Exception as _e:
+            except Exception:
                 # Keep relations as empty if fallback fails
                 pass
 

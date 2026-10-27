@@ -1852,7 +1852,7 @@ class AgentContext:
                     )
                     decisions.append(decision)
                 return decisions
-            except Exception as e:
+            except Exception:
                 self.logger.exception("ContextGraph find_precedents failed")
                 return []
 

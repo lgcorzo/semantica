@@ -161,7 +161,7 @@ class PolicyEngine:
             )
             self.logger.info(f"Added policy: {policy.policy_id} version {policy.version}")
             return policy.policy_id
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to add policy")
             raise
     
@@ -238,7 +238,7 @@ class PolicyEngine:
             self.logger.info(f"Updated policy {policy_id} to version {new_version}")
             return policy_id
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to update policy")
             raise
     
@@ -325,7 +325,7 @@ class PolicyEngine:
             self.logger.info(f"Found {len(policies)} applicable policies for category {category}")
             return policies
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to get applicable policies")
             raise
 
@@ -459,7 +459,7 @@ class PolicyEngine:
                 version=version
             )
             self.logger.info(f"Recorded policy application: {policy_id} v{version} to decision {decision_id}")
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to record policy application")
             raise
     
@@ -541,7 +541,7 @@ class PolicyEngine:
 
             self.logger.info(f"Recorded policy exception: {exception_id}")
             return exception_id
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to record exception")
             raise
     
@@ -602,7 +602,7 @@ class PolicyEngine:
             versions.sort(key=lambda p: str(p.updated_at))
             return versions
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to get policy history")
             raise
     
@@ -664,7 +664,7 @@ class PolicyEngine:
                     )
             return decisions
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to get affected decisions")
             raise
 
@@ -794,7 +794,7 @@ class PolicyEngine:
             self.logger.info(f"Analyzed policy impact for {policy_id}")
             return impact_analysis
             
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to analyze policy impact")
             raise
     
@@ -888,7 +888,7 @@ class PolicyEngine:
                 "updated_at": data.get("updated_at"),
                 "metadata": data.get("metadata", {})
             })
-        except Exception as e:
+        except Exception:
             self.logger.exception("Failed to get policy")
             raise
     

@@ -171,7 +171,7 @@ class PropertyGenerator:
             rel_types[rel_type].append(rel)
 
         # Create class map
-        class_map = {cls["name"]: cls for cls in classes}
+        _ = {cls["name"]: cls for cls in classes}
         entity_aliases = build_entity_aliases(entities or [])
 
         properties = []
@@ -463,7 +463,7 @@ class PropertyGenerator:
         Returns:
             Properties with inferred domains and ranges
         """
-        class_map = {cls["name"]: cls for cls in classes}
+        _ = {cls["name"]: cls for cls in classes}
 
         for prop in properties:
             if "domain" not in prop or not prop["domain"]:

@@ -386,7 +386,7 @@ def filter_metadata(
         return custom_method(metadata, filter_conditions, operator=operator, **options)
 
     # Default implementation
-    metadata_store = _get_metadata_store()
+    _ = _get_metadata_store()
     # Create filter from conditions
     metadata_filter = MetadataFilter()
     for field, value in filter_conditions.items():

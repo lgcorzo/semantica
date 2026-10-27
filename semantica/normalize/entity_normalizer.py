@@ -137,7 +137,7 @@ class EntityNormalizer:
 
             self.progress_tracker.stop_tracking(tracking_id, status="completed")
             return normalized
-        except Exception as e:
+        except Exception:
             self.progress_tracker.stop_tracking(tracking_id, status="failed")
             raise
 
@@ -162,7 +162,7 @@ class EntityNormalizer:
             result = self.alias_resolver.resolve_aliases(entity_name, **context)
             self.progress_tracker.stop_tracking(tracking_id, status="completed")
             return result
-        except Exception as e:
+        except Exception:
             self.progress_tracker.stop_tracking(tracking_id, status="failed")
             raise
 
@@ -191,7 +191,7 @@ class EntityNormalizer:
             result = self.disambiguator.disambiguate(entity_name, **context)
             self.progress_tracker.stop_tracking(tracking_id, status="completed")
             return result
-        except Exception as e:
+        except Exception:
             self.progress_tracker.stop_tracking(tracking_id, status="failed")
             raise
 
@@ -221,7 +221,7 @@ class EntityNormalizer:
 
             self.progress_tracker.stop_tracking(tracking_id, status="completed")
             return linked
-        except Exception as e:
+        except Exception:
             self.progress_tracker.stop_tracking(tracking_id, status="failed")
             raise
 
@@ -381,7 +381,7 @@ class EntityDisambiguator:
                 - candidates: List of candidate entity names
         """
         entity_type = context.get("entity_type")
-        text_context = context.get("context", "")
+        _ = context.get("context", "")
 
         return {
             "entity_name": entity_name,

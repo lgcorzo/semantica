@@ -266,7 +266,7 @@ class AnalyticsVisualizer:
 
         # Connectivity status
         status_text = "Connected" if is_connected else "Disconnected"
-        status_color = "green" if is_connected else "red"
+        _ = "green" if is_connected else "red"
 
         fig.add_trace(
             go.Indicator(

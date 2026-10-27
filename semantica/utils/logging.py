@@ -362,7 +362,7 @@ def log_execution_time(func):
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        logger = get_logger("performance")
+        _ = get_logger("performance")
         start_time = time.time()
 
         try:

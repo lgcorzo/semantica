@@ -113,7 +113,7 @@ class WebParser:
         Returns:
             str: Extracted text
         """
-        content_type = options.get("content_type", "html")
+        _ = options.get("content_type", "html")
 
         # Handle JavaScript rendering if requested
         if options.get("render_javascript", False):

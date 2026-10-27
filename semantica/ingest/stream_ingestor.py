@@ -487,7 +487,7 @@ class StreamMonitor:
 
         for name, processor in self.processors.items():
             stats = processor.get_stats()
-            metrics = self.metrics.get(name, {})
+            _ = self.metrics.get(name, {})
 
             # Calculate error rate
             total = stats.get("processed", 0) + stats.get("errors", 0)

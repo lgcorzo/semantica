@@ -139,9 +139,9 @@ class BulkLoader:
                 for attempt in range(self.max_retries):
                     try:
                         if hasattr(store, "bulk_load"):
-                            result = store.bulk_load(batch, **options)
+                            _ = store.bulk_load(batch, **options)
                         elif hasattr(store, "add_triplets"):
-                            result = store.add_triplets(batch, **options)
+                            _ = store.add_triplets(batch, **options)
                         else:
                             raise ProcessingError(
                                 "Store backend does not support bulk loading"
@@ -268,7 +268,7 @@ class BulkLoader:
             Load progress information
         """
         format = options.get("format", "turtle")
-        chunk_size = options.get("chunk_size", 10000)
+        _ = options.get("chunk_size", 10000)
 
         # This would parse the file and extract triplets
         # For now, return placeholder
