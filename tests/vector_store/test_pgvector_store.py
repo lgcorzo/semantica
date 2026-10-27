@@ -69,25 +69,17 @@ def pg_available() -> bool:
         return False
 
     try:
-        if psycopg_available:
-            try:
-                import psycopg
+        from semantica.vector_store.pgvector_store import _psycopg as pg_module
 
-                conn = psycopg.connect(TEST_CONNECTION_STRING, connect_timeout=5)
-            except ImportError:
-                import psycopg2
-
-                conn = psycopg2.connect(TEST_CONNECTION_STRING, connect_timeout=5)
-
-            cur = conn.cursor()
-            cur.execute("SELECT 1")
-            cur.close()
-            conn.close()
-            return True
+        conn = pg_module.connect(TEST_CONNECTION_STRING, connect_timeout=5)
+        cur = conn.cursor()
+        cur.execute("SELECT 1")
+        cur.close()
+        conn.close()
+        return True
     except Exception:
         # Unable to connect to PostgreSQL database
         return False
-    return False
 
 
 @pytest.fixture

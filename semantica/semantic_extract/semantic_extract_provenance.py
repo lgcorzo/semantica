@@ -169,6 +169,7 @@ class NERExtractorWithProvenance(ProvenanceMixin):
                     try:
                         entity.id = entity_id
                     except AttributeError:
+                        # Object may be immutable or read-only; ignore id setting
                         pass
 
                 self._track_extraction(
@@ -243,6 +244,7 @@ class RelationExtractorWithProvenance(ProvenanceMixin):
                     try:
                         relation.id = relation_id
                     except AttributeError:
+                        # Object may be immutable or read-only; ignore id setting
                         pass
 
                 self._track_extraction(
@@ -316,6 +318,7 @@ class EventDetectorWithProvenance(ProvenanceMixin):
                     try:
                         event.id = event_id
                     except AttributeError:
+                        # Object may be immutable or read-only; ignore id setting
                         pass
 
                 self._track_extraction(
@@ -388,6 +391,7 @@ class CoreferenceResolverWithProvenance(ProvenanceMixin):
                     try:
                         chain.id = chain_id
                     except AttributeError:
+                        # Object may be immutable or read-only; ignore id setting
                         pass
 
                 self._track_extraction(
@@ -458,6 +462,7 @@ class TripletExtractorWithProvenance(ProvenanceMixin):
                     try:
                         triplet.id = triplet_id
                     except AttributeError:
+                        # Object may be immutable or read-only; ignore id setting
                         pass
 
                 self._track_extraction(
