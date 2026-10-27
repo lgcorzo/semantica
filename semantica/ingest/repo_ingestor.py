@@ -422,6 +422,7 @@ class GitAnalyzer:
                         structure["total_directories"] += 1
                         analyze_dir(item, depth + 1)
             except PermissionError:
+                # Permission denied accessing directory during structure analysis
                 pass
 
         analyze_dir(repo_path)
@@ -460,7 +461,8 @@ class GitAnalyzer:
                     metrics["files_by_language"][lang] = (
                         metrics["files_by_language"].get(lang, 0) + 1
                     )
-                except Exception:
+                except Exception as exc:
+                    self.logger.debug(f"Failed to calculate metrics for {file_path}: {exc}")
                     continue
 
         return metrics
@@ -707,6 +709,7 @@ class RepoIngestor:
                 try:
                     resolved = ipaddress.ip_address(addr)
                 except ValueError:
+                    # Invalid IP address string, skip to next resolved IP
                     continue
                 if RepoIngestor._is_blocked_ip(resolved):
                     raise ValidationError(

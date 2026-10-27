@@ -18,6 +18,7 @@ Author: Semantica Contributors
 License: MIT
 """
 
+import importlib.util
 import os
 import uuid
 from typing import Generator
@@ -25,29 +26,16 @@ from typing import Generator
 import numpy as np
 import pytest
 
-# Check dependencies
-psycopg_available = False
-pgvector_available = False
-
-try:
-    import psycopg  # noqa: F401
-
-    psycopg_available = True
-except ImportError:
+def _has_module(name: str) -> bool:
     try:
-        import psycopg2  # noqa: F401
+        return importlib.util.find_spec(name) is not None
+    except (ImportError, ValueError, AttributeError):
+        return False
 
-        psycopg_available = True
-    except ImportError:
-        # Neither psycopg nor psycopg2 is installed
-        pass
 
-try:
-    import pgvector  # noqa: F401
-
-    pgvector_available = True
-except ImportError:
-    pass
+# Check dependencies using find_spec to avoid unused module-level imports
+psycopg_available = _has_module("psycopg") or _has_module("psycopg2")
+pgvector_available = _has_module("pgvector")
 
 # Skip all tests if dependencies not available
 pytestmark = [

@@ -459,6 +459,7 @@ class BaseProvider:
                                 ollama_client, mode=instructor.Mode.JSON
                             )
                         except ImportError:
+                            # Instructor optional dependency not installed
                             pass
                 elif provider_name == "DeepSeekProvider" and self.client:
                     # Try from_provider for DeepSeek
@@ -490,6 +491,7 @@ class BaseProvider:
                                     ds_client, mode=instructor.Mode.JSON
                                 )
                         except Exception:
+                            # Fallback if OpenAI client creation for DeepSeek fails
                             pass
 
                 # Global LiteLLM support - if litellm is passed in kwargs or config
@@ -503,6 +505,7 @@ class BaseProvider:
                                 litellm_provider, api_key=self.api_key
                             )
                         except Exception:
+                            # Fallback if LiteLLM instructor initialization fails
                             pass
 
                 if client:
@@ -894,6 +897,7 @@ class GeminiProvider(BaseProvider):
                 self._use_new_genai = True
                 return
         except Exception:
+            # Fallback if google-genai is not installed or initialization fails
             pass
         try:
             import google.generativeai as old_genai
