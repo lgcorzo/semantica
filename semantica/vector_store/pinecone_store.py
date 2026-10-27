@@ -718,8 +718,8 @@ class PineconeStore:
                 if stats and isinstance(stats, dict) and stats.get("dimension"):
                     dimension = int(stats["dimension"])
                     self.dimension = dimension
-            except Exception:
-                pass
+            except Exception as e:
+                self.logger.debug(f"Could not retrieve dimension from index stats: {e}")
 
         if not dimension:
             raise ProcessingError(

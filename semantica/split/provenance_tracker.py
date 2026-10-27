@@ -142,7 +142,7 @@ class ProvenanceTracker:
             try:
                 chunk.id = chunk_id
             except AttributeError:
-                pass  # Chunk might be immutable
+                self.logger.debug("Unable to set 'id' attribute on chunk; object may be immutable.")
         
         if self._use_unified:
             # Delegate to unified manager
@@ -182,7 +182,7 @@ class ProvenanceTracker:
             try:
                 chunk.id = chunk_id
             except AttributeError:
-                pass
+                self.logger.debug("Unable to set 'id' attribute on chunk; object may be immutable.")
         
         provenance_id = str(uuid4())
 

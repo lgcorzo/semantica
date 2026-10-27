@@ -1,4 +1,4 @@
-﻿"""
+"""
 Decision routes using ContextGraph-native fallbacks.
 """
 

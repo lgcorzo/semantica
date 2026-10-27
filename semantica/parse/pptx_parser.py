@@ -194,8 +194,8 @@ class PPTXParser:
                         "format": shape.image.ext,
                     }
                     images.append(image_info)
-                except Exception:
-                    pass
+                except Exception as e:
+                    get_logger("pptx_parser").debug(f"Failed to extract image info from shape: {e}")
 
             # Extract shape information
             if options.get("extract_shapes", False):
@@ -241,7 +241,7 @@ class PPTXParser:
                 "modified": str(core_props.modified) if core_props.modified else None,
                 "last_modified_by": core_props.last_modified_by,
             }
-        except Exception:
-            pass
+        except Exception as e:
+            get_logger("pptx_parser").debug(f"Could not extract presentation core properties: {e}")
 
         return metadata
