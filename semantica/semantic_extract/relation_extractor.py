@@ -450,6 +450,7 @@ class RelationExtractor:
                                     item_text=r.predicate # For relations, the predicate IS the text usually
                                 )
                         except ImportError:
+                            # Weighted confidence module not available
                             pass
 
                     # Filter by confidence
