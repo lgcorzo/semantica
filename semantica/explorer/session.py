@@ -32,7 +32,8 @@ try:
 
     _KG_AVAILABLE = True
 except ImportError:
-    pass
+    # Optional KG components not available
+    _KG_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 

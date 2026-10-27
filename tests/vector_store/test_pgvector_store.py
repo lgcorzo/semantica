@@ -30,20 +30,20 @@ psycopg_available = False
 pgvector_available = False
 
 try:
-    import psycopg
+    import psycopg  # noqa: F401
 
     psycopg_available = True
 except ImportError:
     try:
-        import psycopg2
+        import psycopg2  # noqa: F401
 
         psycopg_available = True
     except ImportError:
-    # Neither psycopg nor psycopg2 is installed
+        # Neither psycopg nor psycopg2 is installed
         pass
 
 try:
-    import pgvector
+    import pgvector  # noqa: F401
 
     pgvector_available = True
 except ImportError:

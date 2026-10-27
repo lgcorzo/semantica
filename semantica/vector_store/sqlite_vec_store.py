@@ -809,15 +809,15 @@ class SQLiteVecStore:
                 if hasattr(self, "_conn") and self._conn:
                     try:
                         self._conn.close()
-                    except Exception:
-                        pass
+                    except Exception as close_err:
+                        logger.debug("Failed to close SQLite connection: %s", close_err)
                     self._conn = None
         else:
             if hasattr(self, "_conn") and self._conn:
                 try:
                     self._conn.close()
-                except Exception:
-                    pass
+                except Exception as close_err:
+                    logger.debug("Failed to close SQLite connection: %s", close_err)
                 self._conn = None
 
     def __enter__(self):
