@@ -1,4 +1,4 @@
-﻿"""
+"""
 Vocabulary routes for SKOS scheme discovery, hierarchy browsing, and import.
 """
 

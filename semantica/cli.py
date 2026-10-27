@@ -5703,7 +5703,10 @@ def backup_create(
         dest = Path(destination)
         dest.parent.mkdir(parents=True, exist_ok=True)
 
-        import tarfile, tempfile, shutil
+        import shutil
+        import tarfile
+        import tempfile
+
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             manifest: Dict[str, Any] = {
@@ -5837,7 +5840,9 @@ def backup_restore(cli_ctx: CLIContext, source: str, local_dry: bool) -> None:
     cli_ctx = _require_ctx(cli_ctx)
 
     def _action() -> None:
-        import shutil, tarfile as _tf
+        import shutil
+        import tarfile as _tf
+
         src = Path(source)
         if _is_dry(cli_ctx, local_dry):
             _dry(cli_ctx, "restore", source=str(src))

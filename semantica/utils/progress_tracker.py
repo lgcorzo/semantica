@@ -788,8 +788,8 @@ class JupyterProgressDisplay(ProgressDisplay):
                     import os
                     is_colab = ('google.colab' in sys.modules or 
                                os.environ.get("COLAB_GPU") is not None)
-                except Exception:
-                    pass
+                except Exception as e:
+                    get_logger("progress_tracker").debug(f"Colab check failed: {e}")
                 
                 if self.display_handle is None:
                     # First time - create display
@@ -802,8 +802,8 @@ class JupyterProgressDisplay(ProgressDisplay):
                             # Clear and recreate for Colab compatibility
                             try:
                                 clear_output(wait=False)
-                            except Exception:
-                                pass
+                            except Exception as e:
+                                get_logger("progress_tracker").debug(f"Colab clear output failed: {e}")
                             self.display_handle = display(HTML(html), display_id=True)
                         else:
                             # Regular Jupyter - try update first
@@ -812,15 +812,15 @@ class JupyterProgressDisplay(ProgressDisplay):
                         # If update fails, create new display (works in both Jupyter and Colab)
                         try:
                             clear_output(wait=False)
-                        except Exception:
-                            pass
+                        except Exception as e:
+                            get_logger("progress_tracker").debug(f"Display update fallback clear output failed: {e}")
                         self.display_handle = display(HTML(html), display_id=True)
-            except Exception:
+            except Exception as e:
                 # Fallback: always create new display if update fails
                 try:
                     clear_output(wait=False)
-                except Exception:
-                    pass
+                except Exception as e2:
+                    get_logger("progress_tracker").debug(f"Outer fallback clear output failed: {e2}")
                 self.display_handle = display(HTML(html), display_id=True)
 
     def show_summary(self, items: List[ProgressItem]) -> None:
@@ -1032,7 +1032,8 @@ class ModuleDetector:
 
             return module_name, submodule_name
 
-        except Exception:
+        except Exception as e:
+            get_logger("progress_tracker").debug(f"detect_from_frame failed: {e}")
             return None, None
 
     @staticmethod
@@ -1058,7 +1059,8 @@ class ModuleDetector:
                     return None, None
 
             return ModuleDetector.detect_from_frame(frame)
-        except Exception:
+        except Exception as e:
+            get_logger("progress_tracker").debug(f"detect_from_call_stack failed: {e}")
             return None, None
 
 
@@ -1167,8 +1169,8 @@ class ProgressTracker:
                     config_str = str(ipython.config.IPKernelApp)
                     if 'google.colab' in config_str or 'colab' in config_str.lower():
                         return True
-            except Exception:
-                pass
+            except Exception as e:
+                get_logger("progress_tracker").debug(f"Colab check failed: {e}")
             
             # Method 2: Check for kernel attribute (Jupyter/Colab)
             if hasattr(ipython, "kernel"):
@@ -1186,7 +1188,8 @@ class ProgressTracker:
                 return True
             
             return False
-        except Exception:
+        except Exception as e:
+            get_logger("progress_tracker").debug(f"_detect_jupyter failed: {e}")
             return False
 
     @classmethod

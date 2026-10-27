@@ -1,4 +1,4 @@
-﻿"""Tests for vocabulary explorer routes."""
+"""Tests for vocabulary explorer routes."""
 
 from unittest.mock import MagicMock
 
