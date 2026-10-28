@@ -149,7 +149,7 @@ class TestStoragePerformance:
         
         # Verify performance requirements
         assert results[1000]["save_time"] < 0.1, "Large snapshot save should be under 100ms"
-        assert results[1000]["get_time"] < 0.15, "Large snapshot retrieval should be under 150ms"
+        assert results[1000]["get_time"] < 0.1, "Large snapshot retrieval should be under 100ms"
         
         self.perf_suite.results["inmemory_storage"] = results
     
