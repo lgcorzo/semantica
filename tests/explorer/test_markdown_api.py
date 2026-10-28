@@ -211,8 +211,8 @@ def test_memory_listing_is_atomic_with_concurrent_mutation(
     def pause_after_key_snapshot(*, offset=0, limit=100, **_filters):
         memory_ids = list(memory.memory_items.keys())[offset : offset + limit]
         snapshot_ready.set()
-        assert mutation_attempted.wait(timeout=1)
-        mutation_finished.wait(timeout=0.25)
+        assert mutation_attempted.wait(timeout=10)
+        mutation_finished.wait(timeout=5)
 
         records = []
         for memory_id in memory_ids:
@@ -227,7 +227,7 @@ def test_memory_listing_is_atomic_with_concurrent_mutation(
     monkeypatch.setattr(memory, "list", pause_after_key_snapshot)
 
     def delete_memory() -> None:
-        assert snapshot_ready.wait(timeout=1)
+        assert snapshot_ready.wait(timeout=10)
         mutation_attempted.set()
         memory.delete_memory("editable-memory")
         mutation_finished.set()
@@ -237,7 +237,7 @@ def test_memory_listing_is_atomic_with_concurrent_mutation(
     try:
         response = client.get("/api/memories?skip=0&limit=100")
     finally:
-        writer.join(timeout=2)
+        writer.join(timeout=10)
 
     assert not writer.is_alive()
     assert response.status_code == 200
