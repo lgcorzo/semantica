@@ -85,6 +85,8 @@ Semantica is the semantic/context layer underneath your LLM, vector store, and a
 
 Decision provenance and audit trails aren't the product. They fall out of that structure for free, and in domains a regulator can question, the same structure that makes your agent smarter also gives you a straight answer to "why."
 
+Maintained fork of [semantica-agi/semantica](https://github.com/semantica-agi/semantica). It applies security patches and maintenance fixes on top of upstream. Part of the [Dark Gravity](https://github.com/lgcorzo/rust_CACD_autonomous_factory) factory. License: MIT.
+
 > [!NOTE]
 > **System-level explainability, not foundation-model explainability.** Semantica doesn't expose or reconstruct what happens *inside* the LLM: its internal reasoning stays opaque, like it does for any external system. Semantica explains what's *outside* the model: the context fed in, the decision produced, its provenance, relevant relationships, applied policies, and the full execution trail.
 
