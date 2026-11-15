@@ -1,3 +1,5 @@
+Maintained fork of [semantica-agi/semantica](https://github.com/semantica-agi/semantica). It applies security patches and maintenance fixes on top of upstream. Part of the [Dark Gravity](https://github.com/lgcorzo/rust_CACD_autonomous_factory) factory. License: MIT.
+
 <div align="center">
 
 <img src="Semantica Logo.png" alt="Semantica" width="420"/>
@@ -84,8 +86,6 @@ Most AI agents run on embeddings, not meaning: similarity scores with no structu
 Semantica is the semantic/context layer underneath your LLM, vector store, and agent framework: deterministic infrastructure (no LLM required for graph construction, reasoning, or provenance; where an LLM is used, it's optional and vendor-neutral, every major provider supported, OpenAI, Anthropic, Gemini, and more, via `semantica.llms`) that turns fragmented enterprise data into a structured, queryable Context Graph and knowledge graph that carries the business context, not just the data structure. Ontologies and controlled vocabularies (OWL, SHACL, SKOS) make what an entity *means* to your business, its definitions, relationships, and rules, as explicit as the data itself, not just its embedding.
 
 Decision provenance and audit trails aren't the product. They fall out of that structure for free, and in domains a regulator can question, the same structure that makes your agent smarter also gives you a straight answer to "why."
-
-Maintained fork of [semantica-agi/semantica](https://github.com/semantica-agi/semantica). It applies security patches and maintenance fixes on top of upstream. Part of the [Dark Gravity](https://github.com/lgcorzo/rust_CACD_autonomous_factory) factory. License: MIT.
 
 > [!NOTE]
 > **System-level explainability, not foundation-model explainability.** Semantica doesn't expose or reconstruct what happens *inside* the LLM: its internal reasoning stays opaque, like it does for any external system. Semantica explains what's *outside* the model: the context fed in, the decision produced, its provenance, relevant relationships, applied policies, and the full execution trail.
