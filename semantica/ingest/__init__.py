@@ -671,25 +671,6 @@ __all__ = [
     "LookerIngestor",
     "LookerData",
     "LookerConnector",
-    # DuckDB ingestion
-    "DuckDBIngestor",
-    "DuckDBData",
-    # Elasticsearch ingestion
-    "ElasticIngestor",
-    "ElasticData",
-    # Google Drive ingestion
-    "GDriveIngestor",
-    "GDriveData",
-    # Hugging Face dataset ingestion
-    "HuggingFaceIngestor",
-    "HFData",
-    # MongoDB ingestion
-    "MongoIngestor",
-    "MongoData",
-    "MongoConnector",
-    # pandas DataFrame ingestion
-    "PandasIngestor",
-    "PandasData",
     # Registry and Methods
     "MethodRegistry",
     "method_registry",
