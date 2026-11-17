@@ -139,6 +139,14 @@ import importlib
 from typing import TYPE_CHECKING, Any, Dict, Tuple
 
 if TYPE_CHECKING:
+    from .duckdb_ingestor import DuckDBData, DuckDBIngestor
+    from .elastic_ingestor import ElasticData, ElasticIngestor
+    from .gdrive_ingestor import GDriveData, GDriveIngestor
+    from .huggingface_ingestor import HFData, HuggingFaceIngestor
+    from .mongo_ingestor import MongoConnector, MongoData, MongoIngestor
+    from .pandas_ingestor import PandasData, PandasIngestor
+
+if TYPE_CHECKING:
     from .bigquery_ingestor import (
         BigQueryConnector,
         BigQueryData,
@@ -671,6 +679,25 @@ __all__ = [
     "LookerIngestor",
     "LookerData",
     "LookerConnector",
+    # DuckDB ingestion
+    "DuckDBIngestor",
+    "DuckDBData",
+    # Elasticsearch ingestion
+    "ElasticIngestor",
+    "ElasticData",
+    # Google Drive ingestion
+    "GDriveIngestor",
+    "GDriveData",
+    # Hugging Face dataset ingestion
+    "HuggingFaceIngestor",
+    "HFData",
+    # MongoDB ingestion
+    "MongoIngestor",
+    "MongoData",
+    "MongoConnector",
+    # pandas DataFrame ingestion
+    "PandasIngestor",
+    "PandasData",
     # Registry and Methods
     "MethodRegistry",
     "method_registry",
