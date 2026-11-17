@@ -139,6 +139,14 @@ import importlib
 from typing import TYPE_CHECKING, Any, Dict, Tuple
 
 if TYPE_CHECKING:
+    from .duckdb_ingestor import DuckDBData, DuckDBIngestor
+    from .elastic_ingestor import ElasticData, ElasticIngestor
+    from .gdrive_ingestor import GDriveData, GDriveIngestor
+    from .huggingface_ingestor import HFData, HuggingFaceIngestor
+    from .mongo_ingestor import MongoConnector, MongoData, MongoIngestor
+    from .pandas_ingestor import PandasData, PandasIngestor
+
+if TYPE_CHECKING:
     from .bigquery_ingestor import (
         BigQueryConnector,
         BigQueryData,
