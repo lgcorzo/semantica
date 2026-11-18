@@ -157,6 +157,11 @@ if TYPE_CHECKING:
         Dynamics365Data,
         Dynamics365Ingestor,
     )
+    from .looker_ingestor import (
+        LookerConnector,
+        LookerData,
+        LookerIngestor,
+    )
     from .powerbi_ingestor import (
         PowerBIConnector,
         PowerBIData,

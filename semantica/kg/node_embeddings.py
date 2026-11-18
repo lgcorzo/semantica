@@ -42,11 +42,10 @@ License: MIT
 """
 
 import random
-from collections import defaultdict, deque
-from typing import Any, Dict, List, Optional, Tuple
+from collections import defaultdict
+from typing import Any, Dict, List, Optional
 
 import numpy as np
-from scipy import sparse
 
 from ..utils.logging import get_logger
 from ..utils.progress_tracker import get_progress_tracker
@@ -569,6 +568,7 @@ class NodeEmbedder:
                     if embedding:
                         embeddings[node_id] = embedding
             except (TypeError, AttributeError):
+                # Graph store implementation does not support property querying
                 pass
         elif not embeddings:
             # Fallback - iterate through all nodes. ``nodes`` may be a method
