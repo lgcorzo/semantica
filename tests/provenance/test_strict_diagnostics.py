@@ -209,29 +209,37 @@ def test_explicit_old_subclass_signature_requires_migration(manager, required):
             entity_id,
             source,
             metadata=None,
+            _conn=None,
             *,
             entity_type="entity",
             activity_id=None,
             source_location=None,
             source_quote=None,
             confidence=1.0,
+            raise_on_error=False,
+            **kwargs,
         ):
+            if raise_on_error:
+                raise TypeError("LegacySubclass does not support raise_on_error")
             self.calls += 1
             return super().track_entity(
                 entity_id,
                 source,
                 metadata,
+                _conn=_conn,
                 entity_type=entity_type,
                 activity_id=activity_id,
                 source_location=source_location,
                 source_quote=source_quote,
                 confidence=confidence,
+                **kwargs,
             )
 
     subclass = LegacySubclass(storage=manager.storage)
     assert (
         subclass.track_entity("control", "synthetic", activity_id="control") is not None
     )
+    assert subclass.calls == 1
     before = rows(manager)
     axiom = BridgeAxiom("migration", "synthetic", "r", 2.0, "10.1/synthetic", "p1")
     if required:
@@ -244,5 +252,5 @@ def test_explicit_old_subclass_signature_requires_migration(manager, required):
         )
         assert result["provenance_recorded"] is False
         assert result["provenance_error"] == "TypeError"
-    assert subclass.calls == 1  # No retry or silent legacy fallback.
+    assert subclass.calls == 1  # Control call only; no retry or silent legacy fallback on failure.
     assert rows(manager) == before

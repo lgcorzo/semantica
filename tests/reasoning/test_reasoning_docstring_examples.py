@@ -42,7 +42,7 @@ import re
 
 import pytest
 
-import semantica.reasoning as reasoning_pkg
+from semantica import reasoning as reasoning_pkg
 from semantica.reasoning import (
     ExplanationGenerator,
     Fact,

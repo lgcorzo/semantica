@@ -294,7 +294,7 @@ def test_query_return_is_not_a_hard_requirement(include_query_return):
     dependency as missing and makes every WeaviateStore method raise "Weaviate
     not available" even though weaviate-client is installed.
     """
-    import semantica.vector_store.weaviate_store as store_module
+    store_module = sys.modules["semantica.vector_store.weaviate_store"]
 
     fake_modules = _fake_weaviate(include_query_return=include_query_return)
     saved = {name: sys.modules.get(name) for name in fake_modules}
