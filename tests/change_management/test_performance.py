@@ -9,10 +9,9 @@ import gc
 import time
 import tempfile
 import os
-import threading
 import statistics
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import List, Dict, Any, Tuple
+from typing import Dict, Any, Tuple
 
 import pytest
 

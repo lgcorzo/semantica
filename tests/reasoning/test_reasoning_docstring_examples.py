@@ -285,8 +285,9 @@ class TestSPARQLReasonerExampleRuns:
     def test_expand_query_rejects_a_second_positional(self):
         """What the old example did: expand_query(query, rules)."""
         expander = SPARQLReasoner()
+        expand = getattr(expander, "expand_query")
         with pytest.raises(TypeError):
-            expander.expand_query("SELECT ?x WHERE { ?x a :Person . }", [])
+            expand("SELECT ?x WHERE { ?x a :Person . }", [])
 
     def test_query_is_not_the_method_name(self):
         assert not hasattr(SPARQLReasoner(), "query")
