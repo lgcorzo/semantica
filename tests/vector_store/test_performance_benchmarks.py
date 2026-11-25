@@ -16,10 +16,8 @@ Benchmarks:
 import pytest
 import numpy as np
 import time
-import threading
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, List, Any
 
 
 from semantica.vector_store import VectorStore, DecisionEmbeddingPipeline, HybridSimilarityCalculator
