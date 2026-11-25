@@ -16,12 +16,10 @@ Strategy:
 import builtins
 import json
 import os
-import sys
-import time
-import re
 import stat
 import sys
 import tarfile
+import time
 import types
 from typing import Any
 from unittest.mock import MagicMock, patch
@@ -6078,9 +6076,8 @@ class TestWriteResultOutput:
 
     def _write(self, tmp_path, filename, result):
         """Call _write_result_output and return the output Path."""
-        from semantica.cli import _write_result_output
         out = tmp_path / filename
-        _write_result_output(out, result)
+        cli_module._write_result_output(out, result)
         return out
 
     # ── JSON ─────────────────────────────────────────────────────────────────
@@ -6188,10 +6185,9 @@ class TestWriteResultOutput:
     def test_csv_empty_list_raises_clickexception(self, tmp_path):
         """An empty result list must raise rather than create a headerless newline."""
         import click
-        from semantica.cli import _write_result_output
         out = tmp_path / "empty.csv"
         with pytest.raises(click.ClickException, match="No results to write"):
-            _write_result_output(out, [])
+            cli_module._write_result_output(out, [])
         assert not out.exists()
 
     def test_csv_single_dict_written_as_one_row(self, tmp_path):
@@ -6205,20 +6201,18 @@ class TestWriteResultOutput:
 
     def test_unsupported_extension_raises_clickexception(self, tmp_path):
         import click
-        from semantica.cli import _write_result_output
         out = tmp_path / "report.txt"
         with pytest.raises(click.ClickException, match="Unsupported output format"):
-            _write_result_output(out, {"k": "v"})
+            cli_module._write_result_output(out, {"k": "v"})
         assert not out.exists()
 
     def test_no_extension_raises_clickexception(self, tmp_path):
         """No-extension paths must be rejected — not silently renamed to .json —
         so the path reported to the user always matches the file created."""
         import click
-        from semantica.cli import _write_result_output
         out = tmp_path / "report"
         with pytest.raises(click.ClickException, match="Unsupported output format"):
-            _write_result_output(out, {"k": "v"})
+            cli_module._write_result_output(out, {"k": "v"})
         assert not out.exists()
         assert not (tmp_path / "report.json").exists()
 
@@ -6226,10 +6220,9 @@ class TestWriteResultOutput:
         """.txt is not a documented format and must be rejected, consistent with
         _write_embeddings_output which also rejects it."""
         import click
-        from semantica.cli import _write_result_output
         out = tmp_path / "r.txt"
         with pytest.raises(click.ClickException, match="Unsupported output format"):
-            _write_result_output(out, {"k": "v"})
+            cli_module._write_result_output(out, {"k": "v"})
         assert not out.exists()
 
     def test_uppercase_extension_accepted(self, tmp_path):
