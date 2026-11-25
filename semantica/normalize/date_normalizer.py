@@ -32,7 +32,7 @@ License: MIT
 
 import re
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from ..utils.exceptions import ProcessingError, ValidationError

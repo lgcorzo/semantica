@@ -23,6 +23,11 @@ class _CountingEdgeList(list):
         self.iterations += 1
         return super().__iter__()
 
+    def __eq__(self, other):
+        if not isinstance(other, _CountingEdgeList):
+            return super().__eq__(other)
+        return super().__eq__(other) and self.iterations == other.iterations
+
 
 def _decision(graph: ContextGraph, node_id: str) -> None:
     graph.add_node(

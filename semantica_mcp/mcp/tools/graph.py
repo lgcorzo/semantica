@@ -42,6 +42,7 @@ def handle_add_entity(args: dict) -> dict:
                         with graph._lock:
                             graph._drop_node_from_indexes(node_id)
                     except Exception:
+                        # Best effort rollback, ignore if node wasn't indexed
                         pass
                     return {
                         "error": (
@@ -58,6 +59,7 @@ def handle_add_entity(args: dict) -> dict:
                         with graph._lock:
                             graph._drop_node_from_indexes(node_id)
                     except Exception:
+                        # Best effort rollback, ignore if node wasn't indexed
                         pass
                     log.exception("save_to_file failed after add_entity; mutation rolled back")
                     return {"error": f"Mutation rolled back: could not persist graph: {save_exc}"}
@@ -103,6 +105,7 @@ def handle_add_relationship(args: dict) -> dict:
                                     graph._drop_edge_from_indexes(edge)
                                     break
                     except Exception:
+                        # Best effort rollback, ignore if edge wasn't indexed
                         pass
                     return {
                         "error": (
@@ -124,6 +127,7 @@ def handle_add_relationship(args: dict) -> dict:
                                     graph._drop_edge_from_indexes(edge)
                                     break
                     except Exception:
+                        # Best effort rollback, ignore if edge wasn't indexed
                         pass
                     log.exception("save_to_file failed after add_relationship; mutation rolled back")
                     return {"error": f"Mutation rolled back: could not persist graph: {save_exc}"}
