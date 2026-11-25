@@ -39,7 +39,6 @@ from datetime import datetime
 from email.header import decode_header
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-from urllib.parse import urlparse
 
 
 from ..utils.exceptions import ProcessingError, ValidationError
