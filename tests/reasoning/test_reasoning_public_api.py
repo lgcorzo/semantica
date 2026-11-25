@@ -20,7 +20,7 @@ under test.
 
 import pytest
 
-import semantica.reasoning as reasoning
+from semantica import reasoning
 from semantica.reasoning import abductive_reasoner, explanation_generator
 
 
