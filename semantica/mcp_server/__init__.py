@@ -418,6 +418,7 @@ def _tool_add_entity(args: dict) -> dict:
                     with graph._lock:
                         graph._drop_node_from_indexes(node_id)
                 except Exception:
+                    # Best-effort rollback; index cleanup failure during load abort is non-fatal
                     pass
                 return {
                     "error": (
@@ -432,6 +433,7 @@ def _tool_add_entity(args: dict) -> dict:
                     with graph._lock:
                         graph._drop_node_from_indexes(node_id)
                 except Exception:
+                    # Best-effort rollback; node removal failure after save error is logged below
                     pass
                 log.exception("save_to_file failed after add_entity; mutation rolled back")
                 return {"error": f"Mutation rolled back: could not persist graph: {save_exc}"}
@@ -467,6 +469,7 @@ def _tool_add_relationship(args: dict) -> dict:
                                 graph._drop_edge_from_indexes(edge)
                                 break
                 except Exception:
+                    # Best-effort rollback; edge cleanup failure during load abort is non-fatal
                     pass
                 return {
                     "error": (
@@ -486,6 +489,7 @@ def _tool_add_relationship(args: dict) -> dict:
                                 graph._drop_edge_from_indexes(edge)
                                 break
                 except Exception:
+                    # Best-effort rollback; edge removal failure after save error is logged below
                     pass
                 log.exception("save_to_file failed after add_relationship; mutation rolled back")
                 return {"error": f"Mutation rolled back: could not persist graph: {save_exc}"}
