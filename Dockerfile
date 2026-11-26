@@ -51,6 +51,8 @@ WORKDIR /app
 #   patching clears the alerts.
 # - #6199-#6200: zlib1g (fixed in 1:1.3.dfsg+really1.3.1-1+deb13u1) for
 #   CVE-2026-76844 and CVE-2026-85091 (heap buffer overflow in gz_vacate()).
+# - #1477: libzstd1 (fixed in 1.5.7+dfsg-1+deb13u1) for CVE-2026-124851
+#   (Zstandard information disclosure via uninitialized buffer).
 #
 # --only-upgrade scopes this to just the named packages instead of a
 # blanket `apt-get upgrade` (terrascan AC_DOCKER_0052 - that breaks build
@@ -80,7 +82,9 @@ RUN apt-get update \
         libssl3t64 \
         openssl-provider-legacy \
         apt \
-        libapt-pkg7.0         zlib1g \
+        libapt-pkg7.0 \
+        zlib1g \
+        libzstd1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --system semantica \
