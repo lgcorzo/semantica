@@ -1,3 +1,37 @@
+# Architecture: `semantica` in Dark Gravity
+
+## Ecosystem Role & Tier
+
+- **Tier**: `maintained_fork` (`MAINTAINED_FORK_PROFILE`, upstream `Hawksight-AI/semantica`)
+- **Role**: Causal provenance and semantic decision-intelligence engine deployed in Dark Gravity's `llm-apps` namespace to record `agent-thought` Kafka streams, archive cold provenance to MinIO S3 (`semantica-provenance`), and detect cross-lane conflicts during parallel Swarm synthesis.
+- **Visibility**: `public`
+
+## Internal Component Design
+
+Preserves the upstream Python `semantica/`, `plugins/`, `integrations/`, `explorer/`, and `deploy/` layout (`MAINTAINED_FORK_PROFILE` — full upstream architecture preserved below) integrated into Dark Gravity via containerized `semantica` service adapters.
+
+## Upstream & Downstream Ecosystem Interfaces
+
+```text
+Kafka (agent-thought) ──► semantica (llm-apps) ──► MinIO S3 (semantica-provenance cold archival)
+                              │
+                              └──► rust_CACD_autonomous_factory (SemanticaClient::detect_conflicts)
+```
+
+## Security Boundary & Governance
+
+- **`MAINTAINED_FORK_PROFILE` & Vertex 4 HITL**: All updates flow through security-scanned PRs with manual human merge; `DOC-011` redaction is strictly enforced.
+
+## Canonical Cross-Links
+
+- [DARK_GRAVITY_MANIFEST.md](./DARK_GRAVITY_MANIFEST.md)
+- [REPOSITORIES.md](./REPOSITORIES.md)
+- [Global Architecture Portal](https://lgcorzo.github.io/architecture.html)
+- [Unified Start-Here Portal](https://lgcorzo.github.io/start-here)
+- [AI Auditor Pack](https://lgcorzo.github.io/docs/auditor/)
+
+---
+
 # Semantica — Architecture
 
 Complete data flow from every source type to every final output, and the decision intelligence lifecycle.
