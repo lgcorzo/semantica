@@ -32,8 +32,10 @@ def test_export_formats_node_values_and_endpoint_ids(tmp_path, batch_size):
         "CREATE (n0:Entity {id: 'alice', name: 'Alice'});",
         f"CREATE (n{1 if batch_size > 1 else 0}:Entity {{id: 7, name: 'Seven'}});",
         f"CREATE (n{2 if batch_size > 1 else 0}:Entity {{id: '7', name: ''}});",
-        "MATCH (a {id: 'alice'}), (b {id: 7}) "
-        "CREATE (a)-[r:RELATED_TO {id: 'r1'}]->(b);",
+        (
+            "MATCH (a {id: 'alice'}), (b {id: 7}) "
+            "CREATE (a)-[r:RELATED_TO {id: 'r1'}]->(b);"
+        ),
         "MATCH (a {id: 7}), (b {id: '7'}) CREATE (a)-[r:RELATED_TO {id: 2}]->(b);",
     ]
 

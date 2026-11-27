@@ -31,6 +31,20 @@ _vector_store: Optional[Any] = None
 # persistence is blocked until restart, or a successful opt-in source reload.
 _load_ok: bool = True
 
+__all__ = [
+    "_load_ok",
+    "get_embedder",
+    "get_graph",
+    "get_vector_store",
+    "is_persistence_safe",
+    "kg_file_to_load",
+    "kg_path",
+    "reset_graph",
+    "reset_vector_store",
+    "resolve_vector_backend",
+    "save_graph",
+]
+
 
 _graph_cache: Optional[Any] = None
 

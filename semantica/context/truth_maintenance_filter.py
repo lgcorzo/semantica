@@ -160,6 +160,4 @@ class TruthMaintenanceContextFilter:
         required_supports = root_supports | entity_supports | rel_supports
         if not required_facts.issubset(snapshot.facts):
             return False
-        if not required_supports.issubset(active_ids):
-            return False
-        return True
+        return required_supports.issubset(active_ids)

@@ -77,6 +77,8 @@ _graph: Any = None
 # SEMANTICA_KG_PATH file.  When False (load failed) mutation handlers skip
 # save_to_file to avoid overwriting the original file with an empty graph.
 _kg_load_ok: bool = True
+
+__all__ = ["_kg_load_ok", "main", "server"]
 _graph_cache: Any = None
 
 
